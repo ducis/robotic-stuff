@@ -1,0 +1,2737 @@
+
+IRCom.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00001104  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000004c  00800060  00001104  00001198  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000010e  008000ac  008000ac  000011e4  2**0
+                  ALLOC
+  3 .debug_aranges 00000080  00000000  00000000  000011e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000042e  00000000  00000000  00001264  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000a61  00000000  00000000  00001692  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000429  00000000  00000000  000020f3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000ad2  00000000  00000000  0000251c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000260  00000000  00000000  00002ff0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000444  00000000  00000000  00003250  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d4 e0       	ldi	r29, 0x04	; 4
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	10 e0       	ldi	r17, 0x00	; 0
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	e4 e0       	ldi	r30, 0x04	; 4
+      68:	f1 e1       	ldi	r31, 0x11	; 17
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+      70:	ac 3a       	cpi	r26, 0xAC	; 172
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+      76:	11 e0       	ldi	r17, 0x01	; 1
+      78:	ac ea       	ldi	r26, 0xAC	; 172
+      7a:	b0 e0       	ldi	r27, 0x00	; 0
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	aa 3b       	cpi	r26, 0xBA	; 186
+      82:	b1 07       	cpc	r27, r17
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 03 04 	call	0x806	; 0x806 <main>
+      8a:	0c 94 80 08 	jmp	0x1100	; 0x1100 <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <SendSingleLowestBit>:
+
+
+
+
+
+void SendSingleLowestBit(unsigned char toSend){
+      92:	df 93       	push	r29
+      94:	cf 93       	push	r28
+      96:	00 d0       	rcall	.+0      	; 0x98 <SendSingleLowestBit+0x6>
+      98:	00 d0       	rcall	.+0      	; 0x9a <SendSingleLowestBit+0x8>
+      9a:	0f 92       	push	r0
+      9c:	cd b7       	in	r28, 0x3d	; 61
+      9e:	de b7       	in	r29, 0x3e	; 62
+      a0:	8d 83       	std	Y+5, r24	; 0x05
+	PORTD |= _BV(PORTD1);
+      a2:	a2 e3       	ldi	r26, 0x32	; 50
+      a4:	b0 e0       	ldi	r27, 0x00	; 0
+      a6:	e2 e3       	ldi	r30, 0x32	; 50
+      a8:	f0 e0       	ldi	r31, 0x00	; 0
+      aa:	80 81       	ld	r24, Z
+      ac:	82 60       	ori	r24, 0x02	; 2
+      ae:	8c 93       	st	X, r24
+	{
+		static const short waiting[2] = { BIT_PULSE_LEN_MOD_ZERO , BIT_PULSE_LEN_MOD_ONE };
+		unsigned short i = waiting[toSend&1];
+      b0:	8d 81       	ldd	r24, Y+5	; 0x05
+      b2:	88 2f       	mov	r24, r24
+      b4:	90 e0       	ldi	r25, 0x00	; 0
+      b6:	81 70       	andi	r24, 0x01	; 1
+      b8:	90 70       	andi	r25, 0x00	; 0
+      ba:	88 0f       	add	r24, r24
+      bc:	99 1f       	adc	r25, r25
+      be:	fc 01       	movw	r30, r24
+      c0:	e0 5a       	subi	r30, 0xA0	; 160
+      c2:	ff 4f       	sbci	r31, 0xFF	; 255
+      c4:	80 81       	ld	r24, Z
+      c6:	91 81       	ldd	r25, Z+1	; 0x01
+      c8:	9c 83       	std	Y+4, r25	; 0x04
+      ca:	8b 83       	std	Y+3, r24	; 0x03
+      cc:	11 c0       	rjmp	.+34     	; 0xf0 <SendSingleLowestBit+0x5e>
+		for(;i>0;--i){
+			TIFR &= ~_BV(OCF2);
+      ce:	a8 e5       	ldi	r26, 0x58	; 88
+      d0:	b0 e0       	ldi	r27, 0x00	; 0
+      d2:	e8 e5       	ldi	r30, 0x58	; 88
+      d4:	f0 e0       	ldi	r31, 0x00	; 0
+      d6:	80 81       	ld	r24, Z
+      d8:	8f 77       	andi	r24, 0x7F	; 127
+      da:	8c 93       	st	X, r24
+			while(!(TIFR & _BV(OCF2)))
+      dc:	e8 e5       	ldi	r30, 0x58	; 88
+      de:	f0 e0       	ldi	r31, 0x00	; 0
+      e0:	80 81       	ld	r24, Z
+      e2:	88 23       	and	r24, r24
+      e4:	dc f7       	brge	.-10     	; 0xdc <SendSingleLowestBit+0x4a>
+void SendSingleLowestBit(unsigned char toSend){
+	PORTD |= _BV(PORTD1);
+	{
+		static const short waiting[2] = { BIT_PULSE_LEN_MOD_ZERO , BIT_PULSE_LEN_MOD_ONE };
+		unsigned short i = waiting[toSend&1];
+		for(;i>0;--i){
+      e6:	8b 81       	ldd	r24, Y+3	; 0x03
+      e8:	9c 81       	ldd	r25, Y+4	; 0x04
+      ea:	01 97       	sbiw	r24, 0x01	; 1
+      ec:	9c 83       	std	Y+4, r25	; 0x04
+      ee:	8b 83       	std	Y+3, r24	; 0x03
+      f0:	8b 81       	ldd	r24, Y+3	; 0x03
+      f2:	9c 81       	ldd	r25, Y+4	; 0x04
+      f4:	00 97       	sbiw	r24, 0x00	; 0
+      f6:	59 f7       	brne	.-42     	; 0xce <SendSingleLowestBit+0x3c>
+			TIFR &= ~_BV(OCF2);
+			while(!(TIFR & _BV(OCF2)))
+				;
+		}
+	}
+	PORTD &= ~_BV(PORTD1);
+      f8:	a2 e3       	ldi	r26, 0x32	; 50
+      fa:	b0 e0       	ldi	r27, 0x00	; 0
+      fc:	e2 e3       	ldi	r30, 0x32	; 50
+      fe:	f0 e0       	ldi	r31, 0x00	; 0
+     100:	80 81       	ld	r24, Z
+     102:	8d 7f       	andi	r24, 0xFD	; 253
+     104:	8c 93       	st	X, r24
+	{
+		unsigned short i = WAIT_AFTER_BIT;
+     106:	84 ef       	ldi	r24, 0xF4	; 244
+     108:	91 e0       	ldi	r25, 0x01	; 1
+     10a:	9a 83       	std	Y+2, r25	; 0x02
+     10c:	89 83       	std	Y+1, r24	; 0x01
+     10e:	11 c0       	rjmp	.+34     	; 0x132 <SendSingleLowestBit+0xa0>
+		for(;i>0;--i){
+			TIFR &= ~_BV(OCF2);
+     110:	a8 e5       	ldi	r26, 0x58	; 88
+     112:	b0 e0       	ldi	r27, 0x00	; 0
+     114:	e8 e5       	ldi	r30, 0x58	; 88
+     116:	f0 e0       	ldi	r31, 0x00	; 0
+     118:	80 81       	ld	r24, Z
+     11a:	8f 77       	andi	r24, 0x7F	; 127
+     11c:	8c 93       	st	X, r24
+			while(!(TIFR & _BV(OCF2)))
+     11e:	e8 e5       	ldi	r30, 0x58	; 88
+     120:	f0 e0       	ldi	r31, 0x00	; 0
+     122:	80 81       	ld	r24, Z
+     124:	88 23       	and	r24, r24
+     126:	dc f7       	brge	.-10     	; 0x11e <SendSingleLowestBit+0x8c>
+		}
+	}
+	PORTD &= ~_BV(PORTD1);
+	{
+		unsigned short i = WAIT_AFTER_BIT;
+		for(;i>0;--i){
+     128:	89 81       	ldd	r24, Y+1	; 0x01
+     12a:	9a 81       	ldd	r25, Y+2	; 0x02
+     12c:	01 97       	sbiw	r24, 0x01	; 1
+     12e:	9a 83       	std	Y+2, r25	; 0x02
+     130:	89 83       	std	Y+1, r24	; 0x01
+     132:	89 81       	ldd	r24, Y+1	; 0x01
+     134:	9a 81       	ldd	r25, Y+2	; 0x02
+     136:	00 97       	sbiw	r24, 0x00	; 0
+     138:	59 f7       	brne	.-42     	; 0x110 <SendSingleLowestBit+0x7e>
+			TIFR &= ~_BV(OCF2);
+			while(!(TIFR & _BV(OCF2)))
+				;
+		}
+	}
+}
+     13a:	0f 90       	pop	r0
+     13c:	0f 90       	pop	r0
+     13e:	0f 90       	pop	r0
+     140:	0f 90       	pop	r0
+     142:	0f 90       	pop	r0
+     144:	cf 91       	pop	r28
+     146:	df 91       	pop	r29
+     148:	08 95       	ret
+
+0000014a <WaitIRCarrierCycles>:
+
+void WaitIRCarrierCycles(unsigned short toWait){
+     14a:	df 93       	push	r29
+     14c:	cf 93       	push	r28
+     14e:	00 d0       	rcall	.+0      	; 0x150 <WaitIRCarrierCycles+0x6>
+     150:	cd b7       	in	r28, 0x3d	; 61
+     152:	de b7       	in	r29, 0x3e	; 62
+     154:	9a 83       	std	Y+2, r25	; 0x02
+     156:	89 83       	std	Y+1, r24	; 0x01
+     158:	11 c0       	rjmp	.+34     	; 0x17c <WaitIRCarrierCycles+0x32>
+	for(;toWait>0;--toWait){
+		TIFR &= ~_BV(OCF2);
+     15a:	a8 e5       	ldi	r26, 0x58	; 88
+     15c:	b0 e0       	ldi	r27, 0x00	; 0
+     15e:	e8 e5       	ldi	r30, 0x58	; 88
+     160:	f0 e0       	ldi	r31, 0x00	; 0
+     162:	80 81       	ld	r24, Z
+     164:	8f 77       	andi	r24, 0x7F	; 127
+     166:	8c 93       	st	X, r24
+		while(!(TIFR & _BV(OCF2)))
+     168:	e8 e5       	ldi	r30, 0x58	; 88
+     16a:	f0 e0       	ldi	r31, 0x00	; 0
+     16c:	80 81       	ld	r24, Z
+     16e:	88 23       	and	r24, r24
+     170:	dc f7       	brge	.-10     	; 0x168 <WaitIRCarrierCycles+0x1e>
+		}
+	}
+}
+
+void WaitIRCarrierCycles(unsigned short toWait){
+	for(;toWait>0;--toWait){
+     172:	89 81       	ldd	r24, Y+1	; 0x01
+     174:	9a 81       	ldd	r25, Y+2	; 0x02
+     176:	01 97       	sbiw	r24, 0x01	; 1
+     178:	9a 83       	std	Y+2, r25	; 0x02
+     17a:	89 83       	std	Y+1, r24	; 0x01
+     17c:	89 81       	ldd	r24, Y+1	; 0x01
+     17e:	9a 81       	ldd	r25, Y+2	; 0x02
+     180:	00 97       	sbiw	r24, 0x00	; 0
+     182:	59 f7       	brne	.-42     	; 0x15a <WaitIRCarrierCycles+0x10>
+		TIFR &= ~_BV(OCF2);
+		while(!(TIFR & _BV(OCF2)))
+			;
+	}
+}
+     184:	0f 90       	pop	r0
+     186:	0f 90       	pop	r0
+     188:	cf 91       	pop	r28
+     18a:	df 91       	pop	r29
+     18c:	08 95       	ret
+
+0000018e <SendBitStreamCh>:
+
+
+void SendBitStreamCh(unsigned char toSend, unsigned char n){
+     18e:	df 93       	push	r29
+     190:	cf 93       	push	r28
+     192:	00 d0       	rcall	.+0      	; 0x194 <SendBitStreamCh+0x6>
+     194:	cd b7       	in	r28, 0x3d	; 61
+     196:	de b7       	in	r29, 0x3e	; 62
+     198:	89 83       	std	Y+1, r24	; 0x01
+     19a:	6a 83       	std	Y+2, r22	; 0x02
+     19c:	09 c0       	rjmp	.+18     	; 0x1b0 <SendBitStreamCh+0x22>
+	for(;n;--n){
+		SendSingleLowestBit(toSend);
+     19e:	89 81       	ldd	r24, Y+1	; 0x01
+     1a0:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+		toSend>>=1;
+     1a4:	89 81       	ldd	r24, Y+1	; 0x01
+     1a6:	86 95       	lsr	r24
+     1a8:	89 83       	std	Y+1, r24	; 0x01
+	}
+}
+
+
+void SendBitStreamCh(unsigned char toSend, unsigned char n){
+	for(;n;--n){
+     1aa:	8a 81       	ldd	r24, Y+2	; 0x02
+     1ac:	81 50       	subi	r24, 0x01	; 1
+     1ae:	8a 83       	std	Y+2, r24	; 0x02
+     1b0:	8a 81       	ldd	r24, Y+2	; 0x02
+     1b2:	88 23       	and	r24, r24
+     1b4:	a1 f7       	brne	.-24     	; 0x19e <SendBitStreamCh+0x10>
+		SendSingleLowestBit(toSend);
+		toSend>>=1;
+	}
+}
+     1b6:	0f 90       	pop	r0
+     1b8:	0f 90       	pop	r0
+     1ba:	cf 91       	pop	r28
+     1bc:	df 91       	pop	r29
+     1be:	08 95       	ret
+
+000001c0 <SendLowestBit>:
+
+
+void SendLowestBit(unsigned char toSend){
+     1c0:	df 93       	push	r29
+     1c2:	cf 93       	push	r28
+     1c4:	00 d0       	rcall	.+0      	; 0x1c6 <SendLowestBit+0x6>
+     1c6:	0f 92       	push	r0
+     1c8:	cd b7       	in	r28, 0x3d	; 61
+     1ca:	de b7       	in	r29, 0x3e	; 62
+     1cc:	8b 83       	std	Y+3, r24	; 0x03
+	if( toSend & 1){
+     1ce:	8b 81       	ldd	r24, Y+3	; 0x03
+     1d0:	88 2f       	mov	r24, r24
+     1d2:	90 e0       	ldi	r25, 0x00	; 0
+     1d4:	81 70       	andi	r24, 0x01	; 1
+     1d6:	90 70       	andi	r25, 0x00	; 0
+     1d8:	88 23       	and	r24, r24
+     1da:	41 f0       	breq	.+16     	; 0x1ec <SendLowestBit+0x2c>
+		PORTD &= ~_BV(PORTD1);
+     1dc:	a2 e3       	ldi	r26, 0x32	; 50
+     1de:	b0 e0       	ldi	r27, 0x00	; 0
+     1e0:	e2 e3       	ldi	r30, 0x32	; 50
+     1e2:	f0 e0       	ldi	r31, 0x00	; 0
+     1e4:	80 81       	ld	r24, Z
+     1e6:	8d 7f       	andi	r24, 0xFD	; 253
+     1e8:	8c 93       	st	X, r24
+     1ea:	07 c0       	rjmp	.+14     	; 0x1fa <SendLowestBit+0x3a>
+	}else{
+		PORTD |= _BV(PORTD1);
+     1ec:	a2 e3       	ldi	r26, 0x32	; 50
+     1ee:	b0 e0       	ldi	r27, 0x00	; 0
+     1f0:	e2 e3       	ldi	r30, 0x32	; 50
+     1f2:	f0 e0       	ldi	r31, 0x00	; 0
+     1f4:	80 81       	ld	r24, Z
+     1f6:	82 60       	ori	r24, 0x02	; 2
+     1f8:	8c 93       	st	X, r24
+	}
+	{
+		unsigned short i;
+		for(i = BIT_LEN_MODIFIER; i>0; --i){
+     1fa:	88 ec       	ldi	r24, 0xC8	; 200
+     1fc:	90 e0       	ldi	r25, 0x00	; 0
+     1fe:	9a 83       	std	Y+2, r25	; 0x02
+     200:	89 83       	std	Y+1, r24	; 0x01
+     202:	11 c0       	rjmp	.+34     	; 0x226 <SendLowestBit+0x66>
+			TIFR &= ~_BV(OCF2);
+     204:	a8 e5       	ldi	r26, 0x58	; 88
+     206:	b0 e0       	ldi	r27, 0x00	; 0
+     208:	e8 e5       	ldi	r30, 0x58	; 88
+     20a:	f0 e0       	ldi	r31, 0x00	; 0
+     20c:	80 81       	ld	r24, Z
+     20e:	8f 77       	andi	r24, 0x7F	; 127
+     210:	8c 93       	st	X, r24
+			while(!(TIFR & _BV(OCF2)))
+     212:	e8 e5       	ldi	r30, 0x58	; 88
+     214:	f0 e0       	ldi	r31, 0x00	; 0
+     216:	80 81       	ld	r24, Z
+     218:	88 23       	and	r24, r24
+     21a:	dc f7       	brge	.-10     	; 0x212 <SendLowestBit+0x52>
+	}else{
+		PORTD |= _BV(PORTD1);
+	}
+	{
+		unsigned short i;
+		for(i = BIT_LEN_MODIFIER; i>0; --i){
+     21c:	89 81       	ldd	r24, Y+1	; 0x01
+     21e:	9a 81       	ldd	r25, Y+2	; 0x02
+     220:	01 97       	sbiw	r24, 0x01	; 1
+     222:	9a 83       	std	Y+2, r25	; 0x02
+     224:	89 83       	std	Y+1, r24	; 0x01
+     226:	89 81       	ldd	r24, Y+1	; 0x01
+     228:	9a 81       	ldd	r25, Y+2	; 0x02
+     22a:	00 97       	sbiw	r24, 0x00	; 0
+     22c:	59 f7       	brne	.-42     	; 0x204 <SendLowestBit+0x44>
+			TIFR &= ~_BV(OCF2);
+			while(!(TIFR & _BV(OCF2)))
+				;
+		}
+	}
+}
+     22e:	0f 90       	pop	r0
+     230:	0f 90       	pop	r0
+     232:	0f 90       	pop	r0
+     234:	cf 91       	pop	r28
+     236:	df 91       	pop	r29
+     238:	08 95       	ret
+
+0000023a <SendLowerHalfByte>:
+
+void SendLowerHalfByte(unsigned char toSend){
+     23a:	df 93       	push	r29
+     23c:	cf 93       	push	r28
+     23e:	0f 92       	push	r0
+     240:	cd b7       	in	r28, 0x3d	; 61
+     242:	de b7       	in	r29, 0x3e	; 62
+     244:	89 83       	std	Y+1, r24	; 0x01
+	SendLowestBit(0);
+     246:	80 e0       	ldi	r24, 0x00	; 0
+     248:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <SendLowestBit>
+	for(toSend = (toSend & ((1<<4)-1)) | 1<<4  ;  toSend>1  ;  toSend>>=1){  //Set toSend's higher half byte to 0001
+     24c:	89 81       	ldd	r24, Y+1	; 0x01
+     24e:	8f 70       	andi	r24, 0x0F	; 15
+     250:	80 61       	ori	r24, 0x10	; 16
+     252:	89 83       	std	Y+1, r24	; 0x01
+     254:	0a c0       	rjmp	.+20     	; 0x26a <SendLowerHalfByte+0x30>
+		//Sending 0 as (0,1) and 1 as (1,0)
+		SendLowestBit(toSend);
+     256:	89 81       	ldd	r24, Y+1	; 0x01
+     258:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <SendLowestBit>
+		SendLowestBit(~toSend);
+     25c:	89 81       	ldd	r24, Y+1	; 0x01
+     25e:	80 95       	com	r24
+     260:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <SendLowestBit>
+	}
+}
+
+void SendLowerHalfByte(unsigned char toSend){
+	SendLowestBit(0);
+	for(toSend = (toSend & ((1<<4)-1)) | 1<<4  ;  toSend>1  ;  toSend>>=1){  //Set toSend's higher half byte to 0001
+     264:	89 81       	ldd	r24, Y+1	; 0x01
+     266:	86 95       	lsr	r24
+     268:	89 83       	std	Y+1, r24	; 0x01
+     26a:	89 81       	ldd	r24, Y+1	; 0x01
+     26c:	82 30       	cpi	r24, 0x02	; 2
+     26e:	98 f7       	brcc	.-26     	; 0x256 <SendLowerHalfByte+0x1c>
+		//Sending 0 as (0,1) and 1 as (1,0)
+		SendLowestBit(toSend);
+		SendLowestBit(~toSend);
+	}
+	SendLowestBit(1);
+     270:	81 e0       	ldi	r24, 0x01	; 1
+     272:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <SendLowestBit>
+}
+     276:	0f 90       	pop	r0
+     278:	cf 91       	pop	r28
+     27a:	df 91       	pop	r29
+     27c:	08 95       	ret
+
+0000027e <SendByte>:
+
+void SendByte(unsigned char toSend){
+     27e:	df 93       	push	r29
+     280:	cf 93       	push	r28
+     282:	0f 92       	push	r0
+     284:	cd b7       	in	r28, 0x3d	; 61
+     286:	de b7       	in	r29, 0x3e	; 62
+     288:	89 83       	std	Y+1, r24	; 0x01
+	SendLowerHalfByte(toSend);
+     28a:	89 81       	ldd	r24, Y+1	; 0x01
+     28c:	0e 94 1d 01 	call	0x23a	; 0x23a <SendLowerHalfByte>
+	SendLowerHalfByte(toSend>>4);
+     290:	89 81       	ldd	r24, Y+1	; 0x01
+     292:	82 95       	swap	r24
+     294:	8f 70       	andi	r24, 0x0F	; 15
+     296:	0e 94 1d 01 	call	0x23a	; 0x23a <SendLowerHalfByte>
+}
+     29a:	0f 90       	pop	r0
+     29c:	cf 91       	pop	r28
+     29e:	df 91       	pop	r29
+     2a0:	08 95       	ret
+
+000002a2 <FlushRecv>:
+
+void FlushRecv(){
+     2a2:	df 93       	push	r29
+     2a4:	cf 93       	push	r28
+     2a6:	cd b7       	in	r28, 0x3d	; 61
+     2a8:	de b7       	in	r29, 0x3e	; 62
+	
+}
+     2aa:	cf 91       	pop	r28
+     2ac:	df 91       	pop	r29
+     2ae:	08 95       	ret
+
+000002b0 <CheckRecv>:
+
+void CheckRecv(){
+     2b0:	df 93       	push	r29
+     2b2:	cf 93       	push	r28
+     2b4:	00 d0       	rcall	.+0      	; 0x2b6 <CheckRecv+0x6>
+     2b6:	cd b7       	in	r28, 0x3d	; 61
+     2b8:	de b7       	in	r29, 0x3e	; 62
+	if(UCSRA & _BV(RXC)){
+     2ba:	eb e2       	ldi	r30, 0x2B	; 43
+     2bc:	f0 e0       	ldi	r31, 0x00	; 0
+     2be:	80 81       	ld	r24, Z
+     2c0:	88 23       	and	r24, r24
+     2c2:	9c f4       	brge	.+38     	; 0x2ea <CheckRecv+0x3a>
+		unsigned char c = ~UDR;
+     2c4:	ec e2       	ldi	r30, 0x2C	; 44
+     2c6:	f0 e0       	ldi	r31, 0x00	; 0
+     2c8:	80 81       	ld	r24, Z
+     2ca:	80 95       	com	r24
+     2cc:	8a 83       	std	Y+2, r24	; 0x02
+		if(c){
+     2ce:	8a 81       	ldd	r24, Y+2	; 0x02
+     2d0:	88 23       	and	r24, r24
+     2d2:	59 f0       	breq	.+22     	; 0x2ea <CheckRecv+0x3a>
+			unsigned char b = ( c<SINGLE_PULSE_THRESHOLD ? 1 : 0 );
+     2d4:	19 82       	std	Y+1, r1	; 0x01
+     2d6:	8a 81       	ldd	r24, Y+2	; 0x02
+     2d8:	8c 30       	cpi	r24, 0x0C	; 12
+     2da:	10 f4       	brcc	.+4      	; 0x2e0 <CheckRecv+0x30>
+     2dc:	81 e0       	ldi	r24, 0x01	; 1
+     2de:	89 83       	std	Y+1, r24	; 0x01
+			CircularBitBuffer_PushBit( &g_recvBitBuffer, b );
+     2e0:	82 eb       	ldi	r24, 0xB2	; 178
+     2e2:	90 e0       	ldi	r25, 0x00	; 0
+     2e4:	69 81       	ldd	r22, Y+1	; 0x01
+     2e6:	0e 94 98 04 	call	0x930	; 0x930 <CircularBitBuffer_PushBit>
+		}
+	}
+}
+     2ea:	0f 90       	pop	r0
+     2ec:	0f 90       	pop	r0
+     2ee:	cf 91       	pop	r28
+     2f0:	df 91       	pop	r29
+     2f2:	08 95       	ret
+
+000002f4 <CheckRecvRedundent>:
+
+void CheckRecvRedundent(){
+     2f4:	df 93       	push	r29
+     2f6:	cf 93       	push	r28
+     2f8:	00 d0       	rcall	.+0      	; 0x2fa <CheckRecvRedundent+0x6>
+     2fa:	0f 92       	push	r0
+     2fc:	cd b7       	in	r28, 0x3d	; 61
+     2fe:	de b7       	in	r29, 0x3e	; 62
+	static unsigned char count = 0;
+	static unsigned char cur = 0;
+	char sth = 0;
+     300:	1b 82       	std	Y+3, r1	; 0x03
+	if(UCSRA & _BV(RXC)){
+     302:	eb e2       	ldi	r30, 0x2B	; 43
+     304:	f0 e0       	ldi	r31, 0x00	; 0
+     306:	80 81       	ld	r24, Z
+     308:	88 23       	and	r24, r24
+     30a:	6c f5       	brge	.+90     	; 0x366 <CheckRecvRedundent+0x72>
+		unsigned char c = ~UDR;
+     30c:	ec e2       	ldi	r30, 0x2C	; 44
+     30e:	f0 e0       	ldi	r31, 0x00	; 0
+     310:	80 81       	ld	r24, Z
+     312:	80 95       	com	r24
+     314:	8a 83       	std	Y+2, r24	; 0x02
+		if(c){
+     316:	8a 81       	ldd	r24, Y+2	; 0x02
+     318:	88 23       	and	r24, r24
+     31a:	29 f1       	breq	.+74     	; 0x366 <CheckRecvRedundent+0x72>
+			unsigned char b = ( c<SINGLE_PULSE_THRESHOLD ? 1 : 0 );
+     31c:	19 82       	std	Y+1, r1	; 0x01
+     31e:	8a 81       	ldd	r24, Y+2	; 0x02
+     320:	8c 30       	cpi	r24, 0x0C	; 12
+     322:	10 f4       	brcc	.+4      	; 0x328 <CheckRecvRedundent+0x34>
+     324:	81 e0       	ldi	r24, 0x01	; 1
+     326:	89 83       	std	Y+1, r24	; 0x01
+			if(b==cur){
+     328:	90 91 ae 00 	lds	r25, 0x00AE
+     32c:	89 81       	ldd	r24, Y+1	; 0x01
+     32e:	89 17       	cp	r24, r25
+     330:	91 f4       	brne	.+36     	; 0x356 <CheckRecvRedundent+0x62>
+				if(REDUNDENCY_RECV <= count){
+     332:	80 91 af 00 	lds	r24, 0x00AF
+     336:	84 30       	cpi	r24, 0x04	; 4
+     338:	40 f0       	brcs	.+16     	; 0x34a <CheckRecvRedundent+0x56>
+					CircularBitBuffer_PushBit( &g_recvBitBuffer, b );
+     33a:	82 eb       	ldi	r24, 0xB2	; 178
+     33c:	90 e0       	ldi	r25, 0x00	; 0
+     33e:	69 81       	ldd	r22, Y+1	; 0x01
+     340:	0e 94 98 04 	call	0x930	; 0x930 <CircularBitBuffer_PushBit>
+					count = 0;
+     344:	10 92 af 00 	sts	0x00AF, r1
+     348:	0c c0       	rjmp	.+24     	; 0x362 <CheckRecvRedundent+0x6e>
+				}else{
+					++count;
+     34a:	80 91 af 00 	lds	r24, 0x00AF
+     34e:	8f 5f       	subi	r24, 0xFF	; 255
+     350:	80 93 af 00 	sts	0x00AF, r24
+     354:	06 c0       	rjmp	.+12     	; 0x362 <CheckRecvRedundent+0x6e>
+				}
+			}else{
+				cur = b;
+     356:	89 81       	ldd	r24, Y+1	; 0x01
+     358:	80 93 ae 00 	sts	0x00AE, r24
+				count = 1;
+     35c:	81 e0       	ldi	r24, 0x01	; 1
+     35e:	80 93 af 00 	sts	0x00AF, r24
+			}
+			sth = 1;
+     362:	81 e0       	ldi	r24, 0x01	; 1
+     364:	8b 83       	std	Y+3, r24	; 0x03
+//			TCNT1 = 0;
+//			TIFR&=~_BV(TOV1);
+//			PORTB&=~_BV(1);
+		}
+	}
+	if(sth){
+     366:	8b 81       	ldd	r24, Y+3	; 0x03
+     368:	88 23       	and	r24, r24
+     36a:	99 f0       	breq	.+38     	; 0x392 <CheckRecvRedundent+0x9e>
+		TCNT1 = 0;
+     36c:	ec e4       	ldi	r30, 0x4C	; 76
+     36e:	f0 e0       	ldi	r31, 0x00	; 0
+     370:	11 82       	std	Z+1, r1	; 0x01
+     372:	10 82       	st	Z, r1
+		TIFR&=~_BV(TOV1);
+     374:	a8 e5       	ldi	r26, 0x58	; 88
+     376:	b0 e0       	ldi	r27, 0x00	; 0
+     378:	e8 e5       	ldi	r30, 0x58	; 88
+     37a:	f0 e0       	ldi	r31, 0x00	; 0
+     37c:	80 81       	ld	r24, Z
+     37e:	8b 7f       	andi	r24, 0xFB	; 251
+     380:	8c 93       	st	X, r24
+		PORTB&=~_BV(1);
+     382:	a8 e3       	ldi	r26, 0x38	; 56
+     384:	b0 e0       	ldi	r27, 0x00	; 0
+     386:	e8 e3       	ldi	r30, 0x38	; 56
+     388:	f0 e0       	ldi	r31, 0x00	; 0
+     38a:	80 81       	ld	r24, Z
+     38c:	8d 7f       	andi	r24, 0xFD	; 253
+     38e:	8c 93       	st	X, r24
+     390:	39 c0       	rjmp	.+114    	; 0x404 <CheckRecvRedundent+0x110>
+	}else if( (TCNT1>=TIMEOUT) || (TIFR&_BV(TOV1)) ){
+     392:	ec e4       	ldi	r30, 0x4C	; 76
+     394:	f0 e0       	ldi	r31, 0x00	; 0
+     396:	80 81       	ld	r24, Z
+     398:	91 81       	ldd	r25, Z+1	; 0x01
+     39a:	23 e0       	ldi	r18, 0x03	; 3
+     39c:	88 3e       	cpi	r24, 0xE8	; 232
+     39e:	92 07       	cpc	r25, r18
+     3a0:	48 f4       	brcc	.+18     	; 0x3b4 <CheckRecvRedundent+0xc0>
+     3a2:	e8 e5       	ldi	r30, 0x58	; 88
+     3a4:	f0 e0       	ldi	r31, 0x00	; 0
+     3a6:	80 81       	ld	r24, Z
+     3a8:	88 2f       	mov	r24, r24
+     3aa:	90 e0       	ldi	r25, 0x00	; 0
+     3ac:	84 70       	andi	r24, 0x04	; 4
+     3ae:	90 70       	andi	r25, 0x00	; 0
+     3b0:	00 97       	sbiw	r24, 0x00	; 0
+     3b2:	41 f1       	breq	.+80     	; 0x404 <CheckRecvRedundent+0x110>
+		TCNT1 = 0;
+     3b4:	ec e4       	ldi	r30, 0x4C	; 76
+     3b6:	f0 e0       	ldi	r31, 0x00	; 0
+     3b8:	11 82       	std	Z+1, r1	; 0x01
+     3ba:	10 82       	st	Z, r1
+		TIFR&=~_BV(TOV1);
+     3bc:	a8 e5       	ldi	r26, 0x58	; 88
+     3be:	b0 e0       	ldi	r27, 0x00	; 0
+     3c0:	e8 e5       	ldi	r30, 0x58	; 88
+     3c2:	f0 e0       	ldi	r31, 0x00	; 0
+     3c4:	80 81       	ld	r24, Z
+     3c6:	8b 7f       	andi	r24, 0xFB	; 251
+     3c8:	8c 93       	st	X, r24
+		PORTB|=_BV(1);
+     3ca:	a8 e3       	ldi	r26, 0x38	; 56
+     3cc:	b0 e0       	ldi	r27, 0x00	; 0
+     3ce:	e8 e3       	ldi	r30, 0x38	; 56
+     3d0:	f0 e0       	ldi	r31, 0x00	; 0
+     3d2:	80 81       	ld	r24, Z
+     3d4:	82 60       	ori	r24, 0x02	; 2
+     3d6:	8c 93       	st	X, r24
+		CircularBitBuffer_Clear(&g_recvBitBuffer);
+     3d8:	82 eb       	ldi	r24, 0xB2	; 178
+     3da:	90 e0       	ldi	r25, 0x00	; 0
+     3dc:	0e 94 41 05 	call	0xa82	; 0xa82 <CircularBitBuffer_Clear>
+		count = 0;
+     3e0:	10 92 af 00 	sts	0x00AF, r1
+		cur = 0;
+     3e4:	10 92 ae 00 	sts	0x00AE, r1
+		UCSRB&=~_BV(RXEN);
+     3e8:	aa e2       	ldi	r26, 0x2A	; 42
+     3ea:	b0 e0       	ldi	r27, 0x00	; 0
+     3ec:	ea e2       	ldi	r30, 0x2A	; 42
+     3ee:	f0 e0       	ldi	r31, 0x00	; 0
+     3f0:	80 81       	ld	r24, Z
+     3f2:	8f 7e       	andi	r24, 0xEF	; 239
+     3f4:	8c 93       	st	X, r24
+		UCSRB|=_BV(RXEN);
+     3f6:	aa e2       	ldi	r26, 0x2A	; 42
+     3f8:	b0 e0       	ldi	r27, 0x00	; 0
+     3fa:	ea e2       	ldi	r30, 0x2A	; 42
+     3fc:	f0 e0       	ldi	r31, 0x00	; 0
+     3fe:	80 81       	ld	r24, Z
+     400:	80 61       	ori	r24, 0x10	; 16
+     402:	8c 93       	st	X, r24
+	}
+}
+     404:	0f 90       	pop	r0
+     406:	0f 90       	pop	r0
+     408:	0f 90       	pop	r0
+     40a:	cf 91       	pop	r28
+     40c:	df 91       	pop	r29
+     40e:	08 95       	ret
+
+00000410 <StateProc_Init>:
+
+void StateProc_Init(){
+     410:	df 93       	push	r29
+     412:	cf 93       	push	r28
+     414:	cd b7       	in	r28, 0x3d	; 61
+     416:	de b7       	in	r29, 0x3e	; 62
+
+	DDRB = _BV(DDB0)|_BV(DDB1);
+     418:	e7 e3       	ldi	r30, 0x37	; 55
+     41a:	f0 e0       	ldi	r31, 0x00	; 0
+     41c:	83 e0       	ldi	r24, 0x03	; 3
+     41e:	80 83       	st	Z, r24
+	
+	DDRD = _BV(DDD1)|_BV(DDD7);
+     420:	e1 e3       	ldi	r30, 0x31	; 49
+     422:	f0 e0       	ldi	r31, 0x00	; 0
+     424:	82 e8       	ldi	r24, 0x82	; 130
+     426:	80 83       	st	Z, r24
+	PORTD = 0;
+     428:	e2 e3       	ldi	r30, 0x32	; 50
+     42a:	f0 e0       	ldi	r31, 0x00	; 0
+     42c:	10 82       	st	Z, r1
+
+	TCCR2 = _BV(WGM21)|_BV(COM20)|_BV(CS20);	
+     42e:	e5 e4       	ldi	r30, 0x45	; 69
+     430:	f0 e0       	ldi	r31, 0x00	; 0
+     432:	89 e1       	ldi	r24, 0x19	; 25
+     434:	80 83       	st	Z, r24
+	TCNT2 = 0;
+     436:	e4 e4       	ldi	r30, 0x44	; 68
+     438:	f0 e0       	ldi	r31, 0x00	; 0
+     43a:	10 82       	st	Z, r1
+	OCR2 = CARRIER_FREQ_MODIFIER;
+     43c:	e3 e4       	ldi	r30, 0x43	; 67
+     43e:	f0 e0       	ldi	r31, 0x00	; 0
+     440:	88 e6       	ldi	r24, 0x68	; 104
+     442:	80 83       	st	Z, r24
+
+	UCSRA = _BV(UDRE);
+     444:	eb e2       	ldi	r30, 0x2B	; 43
+     446:	f0 e0       	ldi	r31, 0x00	; 0
+     448:	80 e2       	ldi	r24, 0x20	; 32
+     44a:	80 83       	st	Z, r24
+	UCSRB = _BV(RXEN);
+     44c:	ea e2       	ldi	r30, 0x2A	; 42
+     44e:	f0 e0       	ldi	r31, 0x00	; 0
+     450:	80 e1       	ldi	r24, 0x10	; 16
+     452:	80 83       	st	Z, r24
+	UCSRC = _BV(URSEL)|_BV(UCSZ1)|_BV(UCSZ0);
+     454:	e0 e4       	ldi	r30, 0x40	; 64
+     456:	f0 e0       	ldi	r31, 0x00	; 0
+     458:	86 e8       	ldi	r24, 0x86	; 134
+     45a:	80 83       	st	Z, r24
+	UBRRH = 0;
+     45c:	e0 e4       	ldi	r30, 0x40	; 64
+     45e:	f0 e0       	ldi	r31, 0x00	; 0
+     460:	10 82       	st	Z, r1
+	UBRRL = 103;//Baud rate == 2400 bps
+     462:	e9 e2       	ldi	r30, 0x29	; 41
+     464:	f0 e0       	ldi	r31, 0x00	; 0
+     466:	87 e6       	ldi	r24, 0x67	; 103
+     468:	80 83       	st	Z, r24
+
+	TCCR1B = _BV(CS12)|_BV(CS10);
+     46a:	ee e4       	ldi	r30, 0x4E	; 78
+     46c:	f0 e0       	ldi	r31, 0x00	; 0
+     46e:	85 e0       	ldi	r24, 0x05	; 5
+     470:	80 83       	st	Z, r24
+	TCNT1 = 0;
+     472:	ec e4       	ldi	r30, 0x4C	; 76
+     474:	f0 e0       	ldi	r31, 0x00	; 0
+     476:	11 82       	std	Z+1, r1	; 0x01
+     478:	10 82       	st	Z, r1
+
+	//GoToState(&StateProc_ThirdTest);
+	GoToState(&StateProc_CheckedComIdle);
+     47a:	85 eb       	ldi	r24, 0xB5	; 181
+     47c:	95 e0       	ldi	r25, 0x05	; 5
+     47e:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+	//GoToState(&StateProc_NoiseGen);
+}
+     482:	cf 91       	pop	r28
+     484:	df 91       	pop	r29
+     486:	08 95       	ret
+
+00000488 <StateProc_Idle>:
+void StateProc_Idle(){
+     488:	df 93       	push	r29
+     48a:	cf 93       	push	r28
+     48c:	cd b7       	in	r28, 0x3d	; 61
+     48e:	de b7       	in	r29, 0x3e	; 62
+}
+     490:	cf 91       	pop	r28
+     492:	df 91       	pop	r29
+     494:	08 95       	ret
+
+00000496 <StateProc_FirstTest>:
+void StateProc_FirstTest(){
+     496:	df 93       	push	r29
+     498:	cf 93       	push	r28
+     49a:	00 d0       	rcall	.+0      	; 0x49c <StateProc_FirstTest+0x6>
+     49c:	00 d0       	rcall	.+0      	; 0x49e <StateProc_FirstTest+0x8>
+     49e:	cd b7       	in	r28, 0x3d	; 61
+     4a0:	de b7       	in	r29, 0x3e	; 62
+	if(!(PIND&_BV(PIND3))){
+     4a2:	e0 e3       	ldi	r30, 0x30	; 48
+     4a4:	f0 e0       	ldi	r31, 0x00	; 0
+     4a6:	80 81       	ld	r24, Z
+     4a8:	88 2f       	mov	r24, r24
+     4aa:	90 e0       	ldi	r25, 0x00	; 0
+     4ac:	88 70       	andi	r24, 0x08	; 8
+     4ae:	90 70       	andi	r25, 0x00	; 0
+     4b0:	00 97       	sbiw	r24, 0x00	; 0
+     4b2:	19 f4       	brne	.+6      	; 0x4ba <StateProc_FirstTest+0x24>
+		SendByte(115);
+     4b4:	83 e7       	ldi	r24, 0x73	; 115
+     4b6:	0e 94 3f 01 	call	0x27e	; 0x27e <SendByte>
+	}
+	FlushRecv();
+     4ba:	0e 94 51 01 	call	0x2a2	; 0x2a2 <FlushRecv>
+	{
+		unsigned long i = 100000;
+     4be:	80 ea       	ldi	r24, 0xA0	; 160
+     4c0:	96 e8       	ldi	r25, 0x86	; 134
+     4c2:	a1 e0       	ldi	r26, 0x01	; 1
+     4c4:	b0 e0       	ldi	r27, 0x00	; 0
+     4c6:	89 83       	std	Y+1, r24	; 0x01
+     4c8:	9a 83       	std	Y+2, r25	; 0x02
+     4ca:	ab 83       	std	Y+3, r26	; 0x03
+     4cc:	bc 83       	std	Y+4, r27	; 0x04
+		while(--i);
+     4ce:	89 81       	ldd	r24, Y+1	; 0x01
+     4d0:	9a 81       	ldd	r25, Y+2	; 0x02
+     4d2:	ab 81       	ldd	r26, Y+3	; 0x03
+     4d4:	bc 81       	ldd	r27, Y+4	; 0x04
+     4d6:	01 97       	sbiw	r24, 0x01	; 1
+     4d8:	a1 09       	sbc	r26, r1
+     4da:	b1 09       	sbc	r27, r1
+     4dc:	89 83       	std	Y+1, r24	; 0x01
+     4de:	9a 83       	std	Y+2, r25	; 0x02
+     4e0:	ab 83       	std	Y+3, r26	; 0x03
+     4e2:	bc 83       	std	Y+4, r27	; 0x04
+     4e4:	89 81       	ldd	r24, Y+1	; 0x01
+     4e6:	9a 81       	ldd	r25, Y+2	; 0x02
+     4e8:	ab 81       	ldd	r26, Y+3	; 0x03
+     4ea:	bc 81       	ldd	r27, Y+4	; 0x04
+     4ec:	00 97       	sbiw	r24, 0x00	; 0
+     4ee:	a1 05       	cpc	r26, r1
+     4f0:	b1 05       	cpc	r27, r1
+     4f2:	69 f7       	brne	.-38     	; 0x4ce <StateProc_FirstTest+0x38>
+	}
+}
+     4f4:	0f 90       	pop	r0
+     4f6:	0f 90       	pop	r0
+     4f8:	0f 90       	pop	r0
+     4fa:	0f 90       	pop	r0
+     4fc:	cf 91       	pop	r28
+     4fe:	df 91       	pop	r29
+     500:	08 95       	ret
+
+00000502 <StateProc_SecondTest>:
+void StateProc_SecondTest(){
+     502:	df 93       	push	r29
+     504:	cf 93       	push	r28
+     506:	cd b7       	in	r28, 0x3d	; 61
+     508:	de b7       	in	r29, 0x3e	; 62
+     50a:	27 97       	sbiw	r28, 0x07	; 7
+     50c:	0f b6       	in	r0, 0x3f	; 63
+     50e:	f8 94       	cli
+     510:	de bf       	out	0x3e, r29	; 62
+     512:	0f be       	out	0x3f, r0	; 63
+     514:	cd bf       	out	0x3d, r28	; 61
+	UCSRB&=~_BV(RXEN);
+     516:	aa e2       	ldi	r26, 0x2A	; 42
+     518:	b0 e0       	ldi	r27, 0x00	; 0
+     51a:	ea e2       	ldi	r30, 0x2A	; 42
+     51c:	f0 e0       	ldi	r31, 0x00	; 0
+     51e:	80 81       	ld	r24, Z
+     520:	8f 7e       	andi	r24, 0xEF	; 239
+     522:	8c 93       	st	X, r24
+	if(!(PIND&_BV(PIND6))){ //S2
+     524:	e0 e3       	ldi	r30, 0x30	; 48
+     526:	f0 e0       	ldi	r31, 0x00	; 0
+     528:	80 81       	ld	r24, Z
+     52a:	88 2f       	mov	r24, r24
+     52c:	90 e0       	ldi	r25, 0x00	; 0
+     52e:	80 74       	andi	r24, 0x40	; 64
+     530:	90 70       	andi	r25, 0x00	; 0
+     532:	00 97       	sbiw	r24, 0x00	; 0
+     534:	21 f4       	brne	.+8      	; 0x53e <StateProc_SecondTest+0x3c>
+		SendSingleLowestBit(0);
+     536:	80 e0       	ldi	r24, 0x00	; 0
+     538:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+     53c:	0c c0       	rjmp	.+24     	; 0x556 <StateProc_SecondTest+0x54>
+	}else if(!(PIND&_BV(PIND3))){//S3
+     53e:	e0 e3       	ldi	r30, 0x30	; 48
+     540:	f0 e0       	ldi	r31, 0x00	; 0
+     542:	80 81       	ld	r24, Z
+     544:	88 2f       	mov	r24, r24
+     546:	90 e0       	ldi	r25, 0x00	; 0
+     548:	88 70       	andi	r24, 0x08	; 8
+     54a:	90 70       	andi	r25, 0x00	; 0
+     54c:	00 97       	sbiw	r24, 0x00	; 0
+     54e:	19 f4       	brne	.+6      	; 0x556 <StateProc_SecondTest+0x54>
+		SendSingleLowestBit(1);
+     550:	81 e0       	ldi	r24, 0x01	; 1
+     552:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+	}
+	UCSRB|=_BV(RXEN);
+     556:	aa e2       	ldi	r26, 0x2A	; 42
+     558:	b0 e0       	ldi	r27, 0x00	; 0
+     55a:	ea e2       	ldi	r30, 0x2A	; 42
+     55c:	f0 e0       	ldi	r31, 0x00	; 0
+     55e:	80 81       	ld	r24, Z
+     560:	80 61       	ori	r24, 0x10	; 16
+     562:	8c 93       	st	X, r24
+	{
+		unsigned long i = 3000;
+     564:	88 eb       	ldi	r24, 0xB8	; 184
+     566:	9b e0       	ldi	r25, 0x0B	; 11
+     568:	a0 e0       	ldi	r26, 0x00	; 0
+     56a:	b0 e0       	ldi	r27, 0x00	; 0
+     56c:	8b 83       	std	Y+3, r24	; 0x03
+     56e:	9c 83       	std	Y+4, r25	; 0x04
+     570:	ad 83       	std	Y+5, r26	; 0x05
+     572:	be 83       	std	Y+6, r27	; 0x06
+     574:	31 c0       	rjmp	.+98     	; 0x5d8 <StateProc_SecondTest+0xd6>
+		while(--i){
+			if(UCSRA & _BV(RXC)){
+     576:	eb e2       	ldi	r30, 0x2B	; 43
+     578:	f0 e0       	ldi	r31, 0x00	; 0
+     57a:	80 81       	ld	r24, Z
+     57c:	88 23       	and	r24, r24
+     57e:	64 f5       	brge	.+88     	; 0x5d8 <StateProc_SecondTest+0xd6>
+				unsigned char c = ~UDR;
+     580:	ec e2       	ldi	r30, 0x2C	; 44
+     582:	f0 e0       	ldi	r31, 0x00	; 0
+     584:	80 81       	ld	r24, Z
+     586:	80 95       	com	r24
+     588:	8a 83       	std	Y+2, r24	; 0x02
+				if(c){
+     58a:	8a 81       	ldd	r24, Y+2	; 0x02
+     58c:	88 23       	and	r24, r24
+     58e:	21 f1       	breq	.+72     	; 0x5d8 <StateProc_SecondTest+0xd6>
+					unsigned char mask = _BV(c<SINGLE_PULSE_THRESHOLD);
+     590:	8a 81       	ldd	r24, Y+2	; 0x02
+     592:	8c 30       	cpi	r24, 0x0C	; 12
+     594:	18 f4       	brcc	.+6      	; 0x59c <StateProc_SecondTest+0x9a>
+     596:	82 e0       	ldi	r24, 0x02	; 2
+     598:	8f 83       	std	Y+7, r24	; 0x07
+     59a:	02 c0       	rjmp	.+4      	; 0x5a0 <StateProc_SecondTest+0x9e>
+     59c:	81 e0       	ldi	r24, 0x01	; 1
+     59e:	8f 83       	std	Y+7, r24	; 0x07
+     5a0:	8f 81       	ldd	r24, Y+7	; 0x07
+     5a2:	89 83       	std	Y+1, r24	; 0x01
+					if(PINB & mask){
+     5a4:	e6 e3       	ldi	r30, 0x36	; 54
+     5a6:	f0 e0       	ldi	r31, 0x00	; 0
+     5a8:	90 81       	ld	r25, Z
+     5aa:	89 81       	ldd	r24, Y+1	; 0x01
+     5ac:	89 23       	and	r24, r25
+     5ae:	88 23       	and	r24, r24
+     5b0:	59 f0       	breq	.+22     	; 0x5c8 <StateProc_SecondTest+0xc6>
+						PORTB &= ~mask;
+     5b2:	a8 e3       	ldi	r26, 0x38	; 56
+     5b4:	b0 e0       	ldi	r27, 0x00	; 0
+     5b6:	e8 e3       	ldi	r30, 0x38	; 56
+     5b8:	f0 e0       	ldi	r31, 0x00	; 0
+     5ba:	80 81       	ld	r24, Z
+     5bc:	98 2f       	mov	r25, r24
+     5be:	89 81       	ldd	r24, Y+1	; 0x01
+     5c0:	80 95       	com	r24
+     5c2:	89 23       	and	r24, r25
+     5c4:	8c 93       	st	X, r24
+     5c6:	08 c0       	rjmp	.+16     	; 0x5d8 <StateProc_SecondTest+0xd6>
+					}else{
+						PORTB |= mask;
+     5c8:	a8 e3       	ldi	r26, 0x38	; 56
+     5ca:	b0 e0       	ldi	r27, 0x00	; 0
+     5cc:	e8 e3       	ldi	r30, 0x38	; 56
+     5ce:	f0 e0       	ldi	r31, 0x00	; 0
+     5d0:	90 81       	ld	r25, Z
+     5d2:	89 81       	ldd	r24, Y+1	; 0x01
+     5d4:	89 2b       	or	r24, r25
+     5d6:	8c 93       	st	X, r24
+		SendSingleLowestBit(1);
+	}
+	UCSRB|=_BV(RXEN);
+	{
+		unsigned long i = 3000;
+		while(--i){
+     5d8:	8b 81       	ldd	r24, Y+3	; 0x03
+     5da:	9c 81       	ldd	r25, Y+4	; 0x04
+     5dc:	ad 81       	ldd	r26, Y+5	; 0x05
+     5de:	be 81       	ldd	r27, Y+6	; 0x06
+     5e0:	01 97       	sbiw	r24, 0x01	; 1
+     5e2:	a1 09       	sbc	r26, r1
+     5e4:	b1 09       	sbc	r27, r1
+     5e6:	8b 83       	std	Y+3, r24	; 0x03
+     5e8:	9c 83       	std	Y+4, r25	; 0x04
+     5ea:	ad 83       	std	Y+5, r26	; 0x05
+     5ec:	be 83       	std	Y+6, r27	; 0x06
+     5ee:	8b 81       	ldd	r24, Y+3	; 0x03
+     5f0:	9c 81       	ldd	r25, Y+4	; 0x04
+     5f2:	ad 81       	ldd	r26, Y+5	; 0x05
+     5f4:	be 81       	ldd	r27, Y+6	; 0x06
+     5f6:	00 97       	sbiw	r24, 0x00	; 0
+     5f8:	a1 05       	cpc	r26, r1
+     5fa:	b1 05       	cpc	r27, r1
+     5fc:	09 f0       	breq	.+2      	; 0x600 <StateProc_SecondTest+0xfe>
+     5fe:	bb cf       	rjmp	.-138    	; 0x576 <StateProc_SecondTest+0x74>
+					}
+				}
+			}
+		}
+	}
+}
+     600:	27 96       	adiw	r28, 0x07	; 7
+     602:	0f b6       	in	r0, 0x3f	; 63
+     604:	f8 94       	cli
+     606:	de bf       	out	0x3e, r29	; 62
+     608:	0f be       	out	0x3f, r0	; 63
+     60a:	cd bf       	out	0x3d, r28	; 61
+     60c:	cf 91       	pop	r28
+     60e:	df 91       	pop	r29
+     610:	08 95       	ret
+
+00000612 <StateProc_ThirdTest>:
+void StateProc_ThirdTest(){
+     612:	df 93       	push	r29
+     614:	cf 93       	push	r28
+     616:	00 d0       	rcall	.+0      	; 0x618 <StateProc_ThirdTest+0x6>
+     618:	00 d0       	rcall	.+0      	; 0x61a <StateProc_ThirdTest+0x8>
+     61a:	cd b7       	in	r28, 0x3d	; 61
+     61c:	de b7       	in	r29, 0x3e	; 62
+	unsigned char sth = 0;
+     61e:	1c 82       	std	Y+4, r1	; 0x04
+	if(!(PIND&_BV(PIND6))){ //S2
+     620:	e0 e3       	ldi	r30, 0x30	; 48
+     622:	f0 e0       	ldi	r31, 0x00	; 0
+     624:	80 81       	ld	r24, Z
+     626:	88 2f       	mov	r24, r24
+     628:	90 e0       	ldi	r25, 0x00	; 0
+     62a:	80 74       	andi	r24, 0x40	; 64
+     62c:	90 70       	andi	r25, 0x00	; 0
+     62e:	00 97       	sbiw	r24, 0x00	; 0
+     630:	99 f4       	brne	.+38     	; 0x658 <StateProc_ThirdTest+0x46>
+		UCSRB&=~_BV(RXEN);
+     632:	aa e2       	ldi	r26, 0x2A	; 42
+     634:	b0 e0       	ldi	r27, 0x00	; 0
+     636:	ea e2       	ldi	r30, 0x2A	; 42
+     638:	f0 e0       	ldi	r31, 0x00	; 0
+     63a:	80 81       	ld	r24, Z
+     63c:	8f 7e       	andi	r24, 0xEF	; 239
+     63e:	8c 93       	st	X, r24
+		SendBitStreamCh(5,4);
+     640:	85 e0       	ldi	r24, 0x05	; 5
+     642:	64 e0       	ldi	r22, 0x04	; 4
+     644:	0e 94 c7 00 	call	0x18e	; 0x18e <SendBitStreamCh>
+		UCSRB|=_BV(RXEN);
+     648:	aa e2       	ldi	r26, 0x2A	; 42
+     64a:	b0 e0       	ldi	r27, 0x00	; 0
+     64c:	ea e2       	ldi	r30, 0x2A	; 42
+     64e:	f0 e0       	ldi	r31, 0x00	; 0
+     650:	80 81       	ld	r24, Z
+     652:	80 61       	ori	r24, 0x10	; 16
+     654:	8c 93       	st	X, r24
+     656:	1b c0       	rjmp	.+54     	; 0x68e <StateProc_ThirdTest+0x7c>
+	}else if(!(PIND&_BV(PIND3))){//S3
+     658:	e0 e3       	ldi	r30, 0x30	; 48
+     65a:	f0 e0       	ldi	r31, 0x00	; 0
+     65c:	80 81       	ld	r24, Z
+     65e:	88 2f       	mov	r24, r24
+     660:	90 e0       	ldi	r25, 0x00	; 0
+     662:	88 70       	andi	r24, 0x08	; 8
+     664:	90 70       	andi	r25, 0x00	; 0
+     666:	00 97       	sbiw	r24, 0x00	; 0
+     668:	91 f4       	brne	.+36     	; 0x68e <StateProc_ThirdTest+0x7c>
+		UCSRB&=~_BV(RXEN);
+     66a:	aa e2       	ldi	r26, 0x2A	; 42
+     66c:	b0 e0       	ldi	r27, 0x00	; 0
+     66e:	ea e2       	ldi	r30, 0x2A	; 42
+     670:	f0 e0       	ldi	r31, 0x00	; 0
+     672:	80 81       	ld	r24, Z
+     674:	8f 7e       	andi	r24, 0xEF	; 239
+     676:	8c 93       	st	X, r24
+		SendBitStreamCh(3,4);
+     678:	83 e0       	ldi	r24, 0x03	; 3
+     67a:	64 e0       	ldi	r22, 0x04	; 4
+     67c:	0e 94 c7 00 	call	0x18e	; 0x18e <SendBitStreamCh>
+		UCSRB|=_BV(RXEN);
+     680:	aa e2       	ldi	r26, 0x2A	; 42
+     682:	b0 e0       	ldi	r27, 0x00	; 0
+     684:	ea e2       	ldi	r30, 0x2A	; 42
+     686:	f0 e0       	ldi	r31, 0x00	; 0
+     688:	80 81       	ld	r24, Z
+     68a:	80 61       	ori	r24, 0x10	; 16
+     68c:	8c 93       	st	X, r24
+	}
+	CheckRecvRedundent();
+     68e:	0e 94 7a 01 	call	0x2f4	; 0x2f4 <CheckRecvRedundent>
+	if(CircularBitBuffer_NumBits(&g_recvBitBuffer)>=4){
+     692:	82 eb       	ldi	r24, 0xB2	; 178
+     694:	90 e0       	ldi	r25, 0x00	; 0
+     696:	0e 94 2d 04 	call	0x85a	; 0x85a <CircularBitBuffer_NumBits>
+     69a:	84 30       	cpi	r24, 0x04	; 4
+     69c:	91 05       	cpc	r25, r1
+     69e:	08 f4       	brcc	.+2      	; 0x6a2 <StateProc_ThirdTest+0x90>
+     6a0:	3e c0       	rjmp	.+124    	; 0x71e <StateProc_ThirdTest+0x10c>
+		unsigned char c=0;
+     6a2:	1b 82       	std	Y+3, r1	; 0x03
+		unsigned char i=0;
+     6a4:	1a 82       	std	Y+2, r1	; 0x02
+     6a6:	17 c0       	rjmp	.+46     	; 0x6d6 <StateProc_ThirdTest+0xc4>
+		for(;i<4;++i){
+			c |= CircularBitBuffer_PopBit(&g_recvBitBuffer)<<i;
+     6a8:	82 eb       	ldi	r24, 0xB2	; 178
+     6aa:	90 e0       	ldi	r25, 0x00	; 0
+     6ac:	0e 94 3d 04 	call	0x87a	; 0x87a <CircularBitBuffer_PopBit>
+     6b0:	28 2f       	mov	r18, r24
+     6b2:	30 e0       	ldi	r19, 0x00	; 0
+     6b4:	8a 81       	ldd	r24, Y+2	; 0x02
+     6b6:	88 2f       	mov	r24, r24
+     6b8:	90 e0       	ldi	r25, 0x00	; 0
+     6ba:	a9 01       	movw	r20, r18
+     6bc:	02 c0       	rjmp	.+4      	; 0x6c2 <StateProc_ThirdTest+0xb0>
+     6be:	44 0f       	add	r20, r20
+     6c0:	55 1f       	adc	r21, r21
+     6c2:	8a 95       	dec	r24
+     6c4:	e2 f7       	brpl	.-8      	; 0x6be <StateProc_ThirdTest+0xac>
+     6c6:	ca 01       	movw	r24, r20
+     6c8:	98 2f       	mov	r25, r24
+     6ca:	8b 81       	ldd	r24, Y+3	; 0x03
+     6cc:	89 2b       	or	r24, r25
+     6ce:	8b 83       	std	Y+3, r24	; 0x03
+	}
+	CheckRecvRedundent();
+	if(CircularBitBuffer_NumBits(&g_recvBitBuffer)>=4){
+		unsigned char c=0;
+		unsigned char i=0;
+		for(;i<4;++i){
+     6d0:	8a 81       	ldd	r24, Y+2	; 0x02
+     6d2:	8f 5f       	subi	r24, 0xFF	; 255
+     6d4:	8a 83       	std	Y+2, r24	; 0x02
+     6d6:	8a 81       	ldd	r24, Y+2	; 0x02
+     6d8:	84 30       	cpi	r24, 0x04	; 4
+     6da:	30 f3       	brcs	.-52     	; 0x6a8 <StateProc_ThirdTest+0x96>
+			c |= CircularBitBuffer_PopBit(&g_recvBitBuffer)<<i;
+		}
+		if( c == 5 ){
+     6dc:	8b 81       	ldd	r24, Y+3	; 0x03
+     6de:	85 30       	cpi	r24, 0x05	; 5
+     6e0:	f1 f4       	brne	.+60     	; 0x71e <StateProc_ThirdTest+0x10c>
+			unsigned char mask = _BV(0);
+     6e2:	81 e0       	ldi	r24, 0x01	; 1
+     6e4:	89 83       	std	Y+1, r24	; 0x01
+			if(PINB & mask){
+     6e6:	e6 e3       	ldi	r30, 0x36	; 54
+     6e8:	f0 e0       	ldi	r31, 0x00	; 0
+     6ea:	90 81       	ld	r25, Z
+     6ec:	89 81       	ldd	r24, Y+1	; 0x01
+     6ee:	89 23       	and	r24, r25
+     6f0:	88 23       	and	r24, r24
+     6f2:	59 f0       	breq	.+22     	; 0x70a <StateProc_ThirdTest+0xf8>
+				PORTB &= ~mask;
+     6f4:	a8 e3       	ldi	r26, 0x38	; 56
+     6f6:	b0 e0       	ldi	r27, 0x00	; 0
+     6f8:	e8 e3       	ldi	r30, 0x38	; 56
+     6fa:	f0 e0       	ldi	r31, 0x00	; 0
+     6fc:	80 81       	ld	r24, Z
+     6fe:	98 2f       	mov	r25, r24
+     700:	89 81       	ldd	r24, Y+1	; 0x01
+     702:	80 95       	com	r24
+     704:	89 23       	and	r24, r25
+     706:	8c 93       	st	X, r24
+     708:	08 c0       	rjmp	.+16     	; 0x71a <StateProc_ThirdTest+0x108>
+			}else{
+				PORTB |= mask;
+     70a:	a8 e3       	ldi	r26, 0x38	; 56
+     70c:	b0 e0       	ldi	r27, 0x00	; 0
+     70e:	e8 e3       	ldi	r30, 0x38	; 56
+     710:	f0 e0       	ldi	r31, 0x00	; 0
+     712:	90 81       	ld	r25, Z
+     714:	89 81       	ldd	r24, Y+1	; 0x01
+     716:	89 2b       	or	r24, r25
+     718:	8c 93       	st	X, r24
+			}
+			sth = 1;
+     71a:	81 e0       	ldi	r24, 0x01	; 1
+     71c:	8c 83       	std	Y+4, r24	; 0x04
+		CircularBitBuffer_Clear(&g_recvBitBuffer);
+//			count = 0;
+//			cur = 0;
+//			UCSRA &= ~_BV(RXC);
+	}*/
+}
+     71e:	0f 90       	pop	r0
+     720:	0f 90       	pop	r0
+     722:	0f 90       	pop	r0
+     724:	0f 90       	pop	r0
+     726:	cf 91       	pop	r28
+     728:	df 91       	pop	r29
+     72a:	08 95       	ret
+
+0000072c <GoToState>:
+
+void (*g_currentStateProc)() = NULL;//&StateProc_Init;
+
+void GoToState(void *StateProc){
+     72c:	df 93       	push	r29
+     72e:	cf 93       	push	r28
+     730:	00 d0       	rcall	.+0      	; 0x732 <GoToState+0x6>
+     732:	cd b7       	in	r28, 0x3d	; 61
+     734:	de b7       	in	r29, 0x3e	; 62
+     736:	9a 83       	std	Y+2, r25	; 0x02
+     738:	89 83       	std	Y+1, r24	; 0x01
+	g_currentStateProc = StateProc;
+     73a:	89 81       	ldd	r24, Y+1	; 0x01
+     73c:	9a 81       	ldd	r25, Y+2	; 0x02
+     73e:	90 93 ad 00 	sts	0x00AD, r25
+     742:	80 93 ac 00 	sts	0x00AC, r24
+}
+     746:	0f 90       	pop	r0
+     748:	0f 90       	pop	r0
+     74a:	cf 91       	pop	r28
+     74c:	df 91       	pop	r29
+     74e:	08 95       	ret
+
+00000750 <StateProc_NoiseGen>:
+
+void StateProc_NoiseGen(){
+     750:	df 93       	push	r29
+     752:	cf 93       	push	r28
+     754:	0f 92       	push	r0
+     756:	cd b7       	in	r28, 0x3d	; 61
+     758:	de b7       	in	r29, 0x3e	; 62
+	static int lim = RAND_MAX/500;
+	static int limR = RAND_MAX/2;
+	if(ButtonIsDown(S2)){
+     75a:	86 e0       	ldi	r24, 0x06	; 6
+     75c:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     760:	88 23       	and	r24, r24
+     762:	49 f0       	breq	.+18     	; 0x776 <StateProc_NoiseGen+0x26>
+		--lim;
+     764:	80 91 66 00 	lds	r24, 0x0066
+     768:	90 91 67 00 	lds	r25, 0x0067
+     76c:	01 97       	sbiw	r24, 0x01	; 1
+     76e:	90 93 67 00 	sts	0x0067, r25
+     772:	80 93 66 00 	sts	0x0066, r24
+	}
+	if(ButtonIsDown(S3)){
+     776:	83 e0       	ldi	r24, 0x03	; 3
+     778:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     77c:	88 23       	and	r24, r24
+     77e:	49 f0       	breq	.+18     	; 0x792 <StateProc_NoiseGen+0x42>
+		++lim;
+     780:	80 91 66 00 	lds	r24, 0x0066
+     784:	90 91 67 00 	lds	r25, 0x0067
+     788:	01 96       	adiw	r24, 0x01	; 1
+     78a:	90 93 67 00 	sts	0x0067, r25
+     78e:	80 93 66 00 	sts	0x0066, r24
+	}
+	if(ButtonIsDown(S4)){
+     792:	85 e0       	ldi	r24, 0x05	; 5
+     794:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     798:	88 23       	and	r24, r24
+     79a:	49 f0       	breq	.+18     	; 0x7ae <StateProc_NoiseGen+0x5e>
+		--limR;
+     79c:	80 91 64 00 	lds	r24, 0x0064
+     7a0:	90 91 65 00 	lds	r25, 0x0065
+     7a4:	01 97       	sbiw	r24, 0x01	; 1
+     7a6:	90 93 65 00 	sts	0x0065, r25
+     7aa:	80 93 64 00 	sts	0x0064, r24
+	}
+	if(ButtonIsDown(S5)){
+     7ae:	84 e0       	ldi	r24, 0x04	; 4
+     7b0:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     7b4:	88 23       	and	r24, r24
+     7b6:	49 f0       	breq	.+18     	; 0x7ca <StateProc_NoiseGen+0x7a>
+		++limR;
+     7b8:	80 91 64 00 	lds	r24, 0x0064
+     7bc:	90 91 65 00 	lds	r25, 0x0065
+     7c0:	01 96       	adiw	r24, 0x01	; 1
+     7c2:	90 93 65 00 	sts	0x0065, r25
+     7c6:	80 93 64 00 	sts	0x0064, r24
+	}
+	if(rand()<lim){
+     7ca:	0e 94 dd 07 	call	0xfba	; 0xfba <rand>
+     7ce:	9c 01       	movw	r18, r24
+     7d0:	80 91 66 00 	lds	r24, 0x0066
+     7d4:	90 91 67 00 	lds	r25, 0x0067
+     7d8:	28 17       	cp	r18, r24
+     7da:	39 07       	cpc	r19, r25
+     7dc:	84 f4       	brge	.+32     	; 0x7fe <StateProc_NoiseGen+0xae>
+		SendSingleLowestBit(rand()<limR?1:0);
+     7de:	0e 94 dd 07 	call	0xfba	; 0xfba <rand>
+     7e2:	9c 01       	movw	r18, r24
+     7e4:	80 91 64 00 	lds	r24, 0x0064
+     7e8:	90 91 65 00 	lds	r25, 0x0065
+     7ec:	19 82       	std	Y+1, r1	; 0x01
+     7ee:	28 17       	cp	r18, r24
+     7f0:	39 07       	cpc	r19, r25
+     7f2:	14 f4       	brge	.+4      	; 0x7f8 <StateProc_NoiseGen+0xa8>
+     7f4:	81 e0       	ldi	r24, 0x01	; 1
+     7f6:	89 83       	std	Y+1, r24	; 0x01
+     7f8:	89 81       	ldd	r24, Y+1	; 0x01
+     7fa:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+	}
+}
+     7fe:	0f 90       	pop	r0
+     800:	cf 91       	pop	r28
+     802:	df 91       	pop	r29
+     804:	08 95       	ret
+
+00000806 <main>:
+
+int main(){
+     806:	df 93       	push	r29
+     808:	cf 93       	push	r28
+     80a:	cd b7       	in	r28, 0x3d	; 61
+     80c:	de b7       	in	r29, 0x3e	; 62
+	CircularBitBuffer_Ctor(&g_recvBitBuffer);
+     80e:	82 eb       	ldi	r24, 0xB2	; 178
+     810:	90 e0       	ldi	r25, 0x00	; 0
+     812:	0e 94 15 04 	call	0x82a	; 0x82a <CircularBitBuffer_Ctor>
+	GoToState(&StateProc_Init);
+     816:	88 e0       	ldi	r24, 0x08	; 8
+     818:	92 e0       	ldi	r25, 0x02	; 2
+     81a:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+	while(1){
+		(*g_currentStateProc)();
+     81e:	e0 91 ac 00 	lds	r30, 0x00AC
+     822:	f0 91 ad 00 	lds	r31, 0x00AD
+     826:	09 95       	icall
+     828:	fa cf       	rjmp	.-12     	; 0x81e <main+0x18>
+
+0000082a <CircularBitBuffer_Ctor>:
+#include "CircularBitBuffer.h"
+
+void CircularBitBuffer_Ctor(struct CircularBitBuffer *pThis)
+{
+     82a:	df 93       	push	r29
+     82c:	cf 93       	push	r28
+     82e:	00 d0       	rcall	.+0      	; 0x830 <CircularBitBuffer_Ctor+0x6>
+     830:	cd b7       	in	r28, 0x3d	; 61
+     832:	de b7       	in	r29, 0x3e	; 62
+     834:	9a 83       	std	Y+2, r25	; 0x02
+     836:	89 83       	std	Y+1, r24	; 0x01
+	pThis->m_l = 0;
+     838:	e9 81       	ldd	r30, Y+1	; 0x01
+     83a:	fa 81       	ldd	r31, Y+2	; 0x02
+     83c:	11 82       	std	Z+1, r1	; 0x01
+     83e:	10 82       	st	Z, r1
+	pThis->m_r = 0;
+     840:	e9 81       	ldd	r30, Y+1	; 0x01
+     842:	fa 81       	ldd	r31, Y+2	; 0x02
+     844:	13 82       	std	Z+3, r1	; 0x03
+     846:	12 82       	std	Z+2, r1	; 0x02
+	pThis->m_n = 0;
+     848:	e9 81       	ldd	r30, Y+1	; 0x01
+     84a:	fa 81       	ldd	r31, Y+2	; 0x02
+     84c:	15 82       	std	Z+5, r1	; 0x05
+     84e:	14 82       	std	Z+4, r1	; 0x04
+}
+     850:	0f 90       	pop	r0
+     852:	0f 90       	pop	r0
+     854:	cf 91       	pop	r28
+     856:	df 91       	pop	r29
+     858:	08 95       	ret
+
+0000085a <CircularBitBuffer_NumBits>:
+
+unsigned short CircularBitBuffer_NumBits( const struct CircularBitBuffer *pThis )
+{
+     85a:	df 93       	push	r29
+     85c:	cf 93       	push	r28
+     85e:	00 d0       	rcall	.+0      	; 0x860 <CircularBitBuffer_NumBits+0x6>
+     860:	cd b7       	in	r28, 0x3d	; 61
+     862:	de b7       	in	r29, 0x3e	; 62
+     864:	9a 83       	std	Y+2, r25	; 0x02
+     866:	89 83       	std	Y+1, r24	; 0x01
+	return pThis->m_n;
+     868:	e9 81       	ldd	r30, Y+1	; 0x01
+     86a:	fa 81       	ldd	r31, Y+2	; 0x02
+     86c:	84 81       	ldd	r24, Z+4	; 0x04
+     86e:	95 81       	ldd	r25, Z+5	; 0x05
+}
+     870:	0f 90       	pop	r0
+     872:	0f 90       	pop	r0
+     874:	cf 91       	pop	r28
+     876:	df 91       	pop	r29
+     878:	08 95       	ret
+
+0000087a <CircularBitBuffer_PopBit>:
+
+unsigned char CircularBitBuffer_PopBit(struct CircularBitBuffer *pThis)
+{
+     87a:	df 93       	push	r29
+     87c:	cf 93       	push	r28
+     87e:	00 d0       	rcall	.+0      	; 0x880 <CircularBitBuffer_PopBit+0x6>
+     880:	0f 92       	push	r0
+     882:	cd b7       	in	r28, 0x3d	; 61
+     884:	de b7       	in	r29, 0x3e	; 62
+     886:	9b 83       	std	Y+3, r25	; 0x03
+     888:	8a 83       	std	Y+2, r24	; 0x02
+	unsigned char ret = pThis->m_data[pThis->m_l>>3]>>(pThis->m_l&7);
+     88a:	ea 81       	ldd	r30, Y+2	; 0x02
+     88c:	fb 81       	ldd	r31, Y+3	; 0x03
+     88e:	80 81       	ld	r24, Z
+     890:	91 81       	ldd	r25, Z+1	; 0x01
+     892:	9c 01       	movw	r18, r24
+     894:	36 95       	lsr	r19
+     896:	27 95       	ror	r18
+     898:	36 95       	lsr	r19
+     89a:	27 95       	ror	r18
+     89c:	36 95       	lsr	r19
+     89e:	27 95       	ror	r18
+     8a0:	8a 81       	ldd	r24, Y+2	; 0x02
+     8a2:	9b 81       	ldd	r25, Y+3	; 0x03
+     8a4:	82 0f       	add	r24, r18
+     8a6:	93 1f       	adc	r25, r19
+     8a8:	fc 01       	movw	r30, r24
+     8aa:	36 96       	adiw	r30, 0x06	; 6
+     8ac:	80 81       	ld	r24, Z
+     8ae:	28 2f       	mov	r18, r24
+     8b0:	30 e0       	ldi	r19, 0x00	; 0
+     8b2:	ea 81       	ldd	r30, Y+2	; 0x02
+     8b4:	fb 81       	ldd	r31, Y+3	; 0x03
+     8b6:	80 81       	ld	r24, Z
+     8b8:	91 81       	ldd	r25, Z+1	; 0x01
+     8ba:	87 70       	andi	r24, 0x07	; 7
+     8bc:	90 70       	andi	r25, 0x00	; 0
+     8be:	a9 01       	movw	r20, r18
+     8c0:	02 c0       	rjmp	.+4      	; 0x8c6 <CircularBitBuffer_PopBit+0x4c>
+     8c2:	55 95       	asr	r21
+     8c4:	47 95       	ror	r20
+     8c6:	8a 95       	dec	r24
+     8c8:	e2 f7       	brpl	.-8      	; 0x8c2 <CircularBitBuffer_PopBit+0x48>
+     8ca:	ca 01       	movw	r24, r20
+     8cc:	89 83       	std	Y+1, r24	; 0x01
+	--pThis->m_n;
+     8ce:	ea 81       	ldd	r30, Y+2	; 0x02
+     8d0:	fb 81       	ldd	r31, Y+3	; 0x03
+     8d2:	84 81       	ldd	r24, Z+4	; 0x04
+     8d4:	95 81       	ldd	r25, Z+5	; 0x05
+     8d6:	01 97       	sbiw	r24, 0x01	; 1
+     8d8:	ea 81       	ldd	r30, Y+2	; 0x02
+     8da:	fb 81       	ldd	r31, Y+3	; 0x03
+     8dc:	95 83       	std	Z+5, r25	; 0x05
+     8de:	84 83       	std	Z+4, r24	; 0x04
+	++pThis->m_l;
+     8e0:	ea 81       	ldd	r30, Y+2	; 0x02
+     8e2:	fb 81       	ldd	r31, Y+3	; 0x03
+     8e4:	80 81       	ld	r24, Z
+     8e6:	91 81       	ldd	r25, Z+1	; 0x01
+     8e8:	01 96       	adiw	r24, 0x01	; 1
+     8ea:	ea 81       	ldd	r30, Y+2	; 0x02
+     8ec:	fb 81       	ldd	r31, Y+3	; 0x03
+     8ee:	91 83       	std	Z+1, r25	; 0x01
+     8f0:	80 83       	st	Z, r24
+	if((pThis->m_l>>3)==CIRCULARBITBUFFER_SIZE){
+     8f2:	ea 81       	ldd	r30, Y+2	; 0x02
+     8f4:	fb 81       	ldd	r31, Y+3	; 0x03
+     8f6:	80 81       	ld	r24, Z
+     8f8:	91 81       	ldd	r25, Z+1	; 0x01
+     8fa:	96 95       	lsr	r25
+     8fc:	87 95       	ror	r24
+     8fe:	96 95       	lsr	r25
+     900:	87 95       	ror	r24
+     902:	96 95       	lsr	r25
+     904:	87 95       	ror	r24
+     906:	51 e0       	ldi	r21, 0x01	; 1
+     908:	80 30       	cpi	r24, 0x00	; 0
+     90a:	95 07       	cpc	r25, r21
+     90c:	51 f4       	brne	.+20     	; 0x922 <CircularBitBuffer_PopBit+0xa8>
+		pThis->m_l &= 7;
+     90e:	ea 81       	ldd	r30, Y+2	; 0x02
+     910:	fb 81       	ldd	r31, Y+3	; 0x03
+     912:	80 81       	ld	r24, Z
+     914:	91 81       	ldd	r25, Z+1	; 0x01
+     916:	87 70       	andi	r24, 0x07	; 7
+     918:	90 70       	andi	r25, 0x00	; 0
+     91a:	ea 81       	ldd	r30, Y+2	; 0x02
+     91c:	fb 81       	ldd	r31, Y+3	; 0x03
+     91e:	91 83       	std	Z+1, r25	; 0x01
+     920:	80 83       	st	Z, r24
+	}
+	return ret;
+     922:	89 81       	ldd	r24, Y+1	; 0x01
+}
+     924:	0f 90       	pop	r0
+     926:	0f 90       	pop	r0
+     928:	0f 90       	pop	r0
+     92a:	cf 91       	pop	r28
+     92c:	df 91       	pop	r29
+     92e:	08 95       	ret
+
+00000930 <CircularBitBuffer_PushBit>:
+void CircularBitBuffer_PushBit(struct CircularBitBuffer *pThis, unsigned char bit){
+     930:	df 93       	push	r29
+     932:	cf 93       	push	r28
+     934:	00 d0       	rcall	.+0      	; 0x936 <CircularBitBuffer_PushBit+0x6>
+     936:	0f 92       	push	r0
+     938:	cd b7       	in	r28, 0x3d	; 61
+     93a:	de b7       	in	r29, 0x3e	; 62
+     93c:	9a 83       	std	Y+2, r25	; 0x02
+     93e:	89 83       	std	Y+1, r24	; 0x01
+     940:	6b 83       	std	Y+3, r22	; 0x03
+	pThis->m_data[pThis->m_r>>3] &= ~(1<<(pThis->m_r&7));
+     942:	e9 81       	ldd	r30, Y+1	; 0x01
+     944:	fa 81       	ldd	r31, Y+2	; 0x02
+     946:	82 81       	ldd	r24, Z+2	; 0x02
+     948:	93 81       	ldd	r25, Z+3	; 0x03
+     94a:	ac 01       	movw	r20, r24
+     94c:	56 95       	lsr	r21
+     94e:	47 95       	ror	r20
+     950:	56 95       	lsr	r21
+     952:	47 95       	ror	r20
+     954:	56 95       	lsr	r21
+     956:	47 95       	ror	r20
+     958:	e9 81       	ldd	r30, Y+1	; 0x01
+     95a:	fa 81       	ldd	r31, Y+2	; 0x02
+     95c:	82 81       	ldd	r24, Z+2	; 0x02
+     95e:	93 81       	ldd	r25, Z+3	; 0x03
+     960:	9c 01       	movw	r18, r24
+     962:	36 95       	lsr	r19
+     964:	27 95       	ror	r18
+     966:	36 95       	lsr	r19
+     968:	27 95       	ror	r18
+     96a:	36 95       	lsr	r19
+     96c:	27 95       	ror	r18
+     96e:	89 81       	ldd	r24, Y+1	; 0x01
+     970:	9a 81       	ldd	r25, Y+2	; 0x02
+     972:	82 0f       	add	r24, r18
+     974:	93 1f       	adc	r25, r19
+     976:	fc 01       	movw	r30, r24
+     978:	36 96       	adiw	r30, 0x06	; 6
+     97a:	80 81       	ld	r24, Z
+     97c:	68 2f       	mov	r22, r24
+     97e:	e9 81       	ldd	r30, Y+1	; 0x01
+     980:	fa 81       	ldd	r31, Y+2	; 0x02
+     982:	82 81       	ldd	r24, Z+2	; 0x02
+     984:	93 81       	ldd	r25, Z+3	; 0x03
+     986:	9c 01       	movw	r18, r24
+     988:	27 70       	andi	r18, 0x07	; 7
+     98a:	30 70       	andi	r19, 0x00	; 0
+     98c:	81 e0       	ldi	r24, 0x01	; 1
+     98e:	90 e0       	ldi	r25, 0x00	; 0
+     990:	02 c0       	rjmp	.+4      	; 0x996 <CircularBitBuffer_PushBit+0x66>
+     992:	88 0f       	add	r24, r24
+     994:	99 1f       	adc	r25, r25
+     996:	2a 95       	dec	r18
+     998:	e2 f7       	brpl	.-8      	; 0x992 <CircularBitBuffer_PushBit+0x62>
+     99a:	80 95       	com	r24
+     99c:	86 23       	and	r24, r22
+     99e:	28 2f       	mov	r18, r24
+     9a0:	89 81       	ldd	r24, Y+1	; 0x01
+     9a2:	9a 81       	ldd	r25, Y+2	; 0x02
+     9a4:	84 0f       	add	r24, r20
+     9a6:	95 1f       	adc	r25, r21
+     9a8:	fc 01       	movw	r30, r24
+     9aa:	36 96       	adiw	r30, 0x06	; 6
+     9ac:	20 83       	st	Z, r18
+	pThis->m_data[pThis->m_r>>3] |= (bit&1)<<(pThis->m_r&7);
+     9ae:	e9 81       	ldd	r30, Y+1	; 0x01
+     9b0:	fa 81       	ldd	r31, Y+2	; 0x02
+     9b2:	82 81       	ldd	r24, Z+2	; 0x02
+     9b4:	93 81       	ldd	r25, Z+3	; 0x03
+     9b6:	bc 01       	movw	r22, r24
+     9b8:	76 95       	lsr	r23
+     9ba:	67 95       	ror	r22
+     9bc:	76 95       	lsr	r23
+     9be:	67 95       	ror	r22
+     9c0:	76 95       	lsr	r23
+     9c2:	67 95       	ror	r22
+     9c4:	e9 81       	ldd	r30, Y+1	; 0x01
+     9c6:	fa 81       	ldd	r31, Y+2	; 0x02
+     9c8:	82 81       	ldd	r24, Z+2	; 0x02
+     9ca:	93 81       	ldd	r25, Z+3	; 0x03
+     9cc:	9c 01       	movw	r18, r24
+     9ce:	36 95       	lsr	r19
+     9d0:	27 95       	ror	r18
+     9d2:	36 95       	lsr	r19
+     9d4:	27 95       	ror	r18
+     9d6:	36 95       	lsr	r19
+     9d8:	27 95       	ror	r18
+     9da:	89 81       	ldd	r24, Y+1	; 0x01
+     9dc:	9a 81       	ldd	r25, Y+2	; 0x02
+     9de:	82 0f       	add	r24, r18
+     9e0:	93 1f       	adc	r25, r19
+     9e2:	fc 01       	movw	r30, r24
+     9e4:	36 96       	adiw	r30, 0x06	; 6
+     9e6:	80 81       	ld	r24, Z
+     9e8:	48 2f       	mov	r20, r24
+     9ea:	8b 81       	ldd	r24, Y+3	; 0x03
+     9ec:	88 2f       	mov	r24, r24
+     9ee:	90 e0       	ldi	r25, 0x00	; 0
+     9f0:	9c 01       	movw	r18, r24
+     9f2:	21 70       	andi	r18, 0x01	; 1
+     9f4:	30 70       	andi	r19, 0x00	; 0
+     9f6:	e9 81       	ldd	r30, Y+1	; 0x01
+     9f8:	fa 81       	ldd	r31, Y+2	; 0x02
+     9fa:	82 81       	ldd	r24, Z+2	; 0x02
+     9fc:	93 81       	ldd	r25, Z+3	; 0x03
+     9fe:	87 70       	andi	r24, 0x07	; 7
+     a00:	90 70       	andi	r25, 0x00	; 0
+     a02:	f9 01       	movw	r30, r18
+     a04:	02 c0       	rjmp	.+4      	; 0xa0a <CircularBitBuffer_PushBit+0xda>
+     a06:	ee 0f       	add	r30, r30
+     a08:	ff 1f       	adc	r31, r31
+     a0a:	8a 95       	dec	r24
+     a0c:	e2 f7       	brpl	.-8      	; 0xa06 <CircularBitBuffer_PushBit+0xd6>
+     a0e:	cf 01       	movw	r24, r30
+     a10:	84 2b       	or	r24, r20
+     a12:	28 2f       	mov	r18, r24
+     a14:	89 81       	ldd	r24, Y+1	; 0x01
+     a16:	9a 81       	ldd	r25, Y+2	; 0x02
+     a18:	86 0f       	add	r24, r22
+     a1a:	97 1f       	adc	r25, r23
+     a1c:	fc 01       	movw	r30, r24
+     a1e:	36 96       	adiw	r30, 0x06	; 6
+     a20:	20 83       	st	Z, r18
+	++pThis->m_n;
+     a22:	e9 81       	ldd	r30, Y+1	; 0x01
+     a24:	fa 81       	ldd	r31, Y+2	; 0x02
+     a26:	84 81       	ldd	r24, Z+4	; 0x04
+     a28:	95 81       	ldd	r25, Z+5	; 0x05
+     a2a:	01 96       	adiw	r24, 0x01	; 1
+     a2c:	e9 81       	ldd	r30, Y+1	; 0x01
+     a2e:	fa 81       	ldd	r31, Y+2	; 0x02
+     a30:	95 83       	std	Z+5, r25	; 0x05
+     a32:	84 83       	std	Z+4, r24	; 0x04
+	++pThis->m_r;
+     a34:	e9 81       	ldd	r30, Y+1	; 0x01
+     a36:	fa 81       	ldd	r31, Y+2	; 0x02
+     a38:	82 81       	ldd	r24, Z+2	; 0x02
+     a3a:	93 81       	ldd	r25, Z+3	; 0x03
+     a3c:	01 96       	adiw	r24, 0x01	; 1
+     a3e:	e9 81       	ldd	r30, Y+1	; 0x01
+     a40:	fa 81       	ldd	r31, Y+2	; 0x02
+     a42:	93 83       	std	Z+3, r25	; 0x03
+     a44:	82 83       	std	Z+2, r24	; 0x02
+	if((pThis->m_r>>3)==CIRCULARBITBUFFER_SIZE){
+     a46:	e9 81       	ldd	r30, Y+1	; 0x01
+     a48:	fa 81       	ldd	r31, Y+2	; 0x02
+     a4a:	82 81       	ldd	r24, Z+2	; 0x02
+     a4c:	93 81       	ldd	r25, Z+3	; 0x03
+     a4e:	96 95       	lsr	r25
+     a50:	87 95       	ror	r24
+     a52:	96 95       	lsr	r25
+     a54:	87 95       	ror	r24
+     a56:	96 95       	lsr	r25
+     a58:	87 95       	ror	r24
+     a5a:	f1 e0       	ldi	r31, 0x01	; 1
+     a5c:	80 30       	cpi	r24, 0x00	; 0
+     a5e:	9f 07       	cpc	r25, r31
+     a60:	51 f4       	brne	.+20     	; 0xa76 <CircularBitBuffer_PushBit+0x146>
+		pThis->m_r &= 7;
+     a62:	e9 81       	ldd	r30, Y+1	; 0x01
+     a64:	fa 81       	ldd	r31, Y+2	; 0x02
+     a66:	82 81       	ldd	r24, Z+2	; 0x02
+     a68:	93 81       	ldd	r25, Z+3	; 0x03
+     a6a:	87 70       	andi	r24, 0x07	; 7
+     a6c:	90 70       	andi	r25, 0x00	; 0
+     a6e:	e9 81       	ldd	r30, Y+1	; 0x01
+     a70:	fa 81       	ldd	r31, Y+2	; 0x02
+     a72:	93 83       	std	Z+3, r25	; 0x03
+     a74:	82 83       	std	Z+2, r24	; 0x02
+	}
+}
+     a76:	0f 90       	pop	r0
+     a78:	0f 90       	pop	r0
+     a7a:	0f 90       	pop	r0
+     a7c:	cf 91       	pop	r28
+     a7e:	df 91       	pop	r29
+     a80:	08 95       	ret
+
+00000a82 <CircularBitBuffer_Clear>:
+void CircularBitBuffer_Clear(struct CircularBitBuffer *pThis){
+     a82:	df 93       	push	r29
+     a84:	cf 93       	push	r28
+     a86:	00 d0       	rcall	.+0      	; 0xa88 <CircularBitBuffer_Clear+0x6>
+     a88:	cd b7       	in	r28, 0x3d	; 61
+     a8a:	de b7       	in	r29, 0x3e	; 62
+     a8c:	9a 83       	std	Y+2, r25	; 0x02
+     a8e:	89 83       	std	Y+1, r24	; 0x01
+	CircularBitBuffer_Ctor(pThis);
+     a90:	89 81       	ldd	r24, Y+1	; 0x01
+     a92:	9a 81       	ldd	r25, Y+2	; 0x02
+     a94:	0e 94 15 04 	call	0x82a	; 0x82a <CircularBitBuffer_Ctor>
+}
+     a98:	0f 90       	pop	r0
+     a9a:	0f 90       	pop	r0
+     a9c:	cf 91       	pop	r28
+     a9e:	df 91       	pop	r29
+     aa0:	08 95       	ret
+
+00000aa2 <CountBitsDW>:
+
+unsigned char g_checkedComToSend;
+unsigned char g_checkedComLastReceived;
+
+
+unsigned char CountBitsDW(unsigned long dw){
+     aa2:	df 93       	push	r29
+     aa4:	cf 93       	push	r28
+     aa6:	00 d0       	rcall	.+0      	; 0xaa8 <CountBitsDW+0x6>
+     aa8:	00 d0       	rcall	.+0      	; 0xaaa <CountBitsDW+0x8>
+     aaa:	0f 92       	push	r0
+     aac:	cd b7       	in	r28, 0x3d	; 61
+     aae:	de b7       	in	r29, 0x3e	; 62
+     ab0:	6a 83       	std	Y+2, r22	; 0x02
+     ab2:	7b 83       	std	Y+3, r23	; 0x03
+     ab4:	8c 83       	std	Y+4, r24	; 0x04
+     ab6:	9d 83       	std	Y+5, r25	; 0x05
+	unsigned char r=0;
+     ab8:	19 82       	std	Y+1, r1	; 0x01
+     aba:	15 c0       	rjmp	.+42     	; 0xae6 <CountBitsDW+0x44>
+	while(dw){
+		if(dw&1){
+     abc:	8a 81       	ldd	r24, Y+2	; 0x02
+     abe:	9b 81       	ldd	r25, Y+3	; 0x03
+     ac0:	81 70       	andi	r24, 0x01	; 1
+     ac2:	90 70       	andi	r25, 0x00	; 0
+     ac4:	88 23       	and	r24, r24
+     ac6:	19 f0       	breq	.+6      	; 0xace <CountBitsDW+0x2c>
+			++r;
+     ac8:	89 81       	ldd	r24, Y+1	; 0x01
+     aca:	8f 5f       	subi	r24, 0xFF	; 255
+     acc:	89 83       	std	Y+1, r24	; 0x01
+		}
+		dw>>=1;
+     ace:	8a 81       	ldd	r24, Y+2	; 0x02
+     ad0:	9b 81       	ldd	r25, Y+3	; 0x03
+     ad2:	ac 81       	ldd	r26, Y+4	; 0x04
+     ad4:	bd 81       	ldd	r27, Y+5	; 0x05
+     ad6:	b6 95       	lsr	r27
+     ad8:	a7 95       	ror	r26
+     ada:	97 95       	ror	r25
+     adc:	87 95       	ror	r24
+     ade:	8a 83       	std	Y+2, r24	; 0x02
+     ae0:	9b 83       	std	Y+3, r25	; 0x03
+     ae2:	ac 83       	std	Y+4, r26	; 0x04
+     ae4:	bd 83       	std	Y+5, r27	; 0x05
+unsigned char g_checkedComLastReceived;
+
+
+unsigned char CountBitsDW(unsigned long dw){
+	unsigned char r=0;
+	while(dw){
+     ae6:	8a 81       	ldd	r24, Y+2	; 0x02
+     ae8:	9b 81       	ldd	r25, Y+3	; 0x03
+     aea:	ac 81       	ldd	r26, Y+4	; 0x04
+     aec:	bd 81       	ldd	r27, Y+5	; 0x05
+     aee:	00 97       	sbiw	r24, 0x00	; 0
+     af0:	a1 05       	cpc	r26, r1
+     af2:	b1 05       	cpc	r27, r1
+     af4:	19 f7       	brne	.-58     	; 0xabc <CountBitsDW+0x1a>
+		if(dw&1){
+			++r;
+		}
+		dw>>=1;
+	}
+	return r;
+     af6:	89 81       	ldd	r24, Y+1	; 0x01
+}
+     af8:	0f 90       	pop	r0
+     afa:	0f 90       	pop	r0
+     afc:	0f 90       	pop	r0
+     afe:	0f 90       	pop	r0
+     b00:	0f 90       	pop	r0
+     b02:	cf 91       	pop	r28
+     b04:	df 91       	pop	r29
+     b06:	08 95       	ret
+
+00000b08 <CheckedComTryToStartReceiving>:
+};
+
+
+
+
+BOOL CheckedComTryToStartReceiving(){
+     b08:	df 93       	push	r29
+     b0a:	cf 93       	push	r28
+     b0c:	00 d0       	rcall	.+0      	; 0xb0e <CheckedComTryToStartReceiving+0x6>
+     b0e:	cd b7       	in	r28, 0x3d	; 61
+     b10:	de b7       	in	r29, 0x3e	; 62
+	if(UCSRA & _BV(RXC)){
+     b12:	eb e2       	ldi	r30, 0x2B	; 43
+     b14:	f0 e0       	ldi	r31, 0x00	; 0
+     b16:	80 81       	ld	r24, Z
+     b18:	88 23       	and	r24, r24
+     b1a:	7c f4       	brge	.+30     	; 0xb3a <CheckedComTryToStartReceiving+0x32>
+		unsigned char c = ~UDR;
+     b1c:	ec e2       	ldi	r30, 0x2C	; 44
+     b1e:	f0 e0       	ldi	r31, 0x00	; 0
+     b20:	80 81       	ld	r24, Z
+     b22:	80 95       	com	r24
+     b24:	89 83       	std	Y+1, r24	; 0x01
+		if(c){
+     b26:	89 81       	ldd	r24, Y+1	; 0x01
+     b28:	88 23       	and	r24, r24
+     b2a:	39 f0       	breq	.+14     	; 0xb3a <CheckedComTryToStartReceiving+0x32>
+			GoToState( &StateProc_CheckedComReceiving );
+     b2c:	8e ee       	ldi	r24, 0xEE	; 238
+     b2e:	95 e0       	ldi	r25, 0x05	; 5
+     b30:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+			return TRUE;
+     b34:	81 e0       	ldi	r24, 0x01	; 1
+     b36:	8a 83       	std	Y+2, r24	; 0x02
+     b38:	01 c0       	rjmp	.+2      	; 0xb3c <CheckedComTryToStartReceiving+0x34>
+		}
+	}
+	return FALSE;
+     b3a:	1a 82       	std	Y+2, r1	; 0x02
+     b3c:	8a 81       	ldd	r24, Y+2	; 0x02
+}
+     b3e:	0f 90       	pop	r0
+     b40:	0f 90       	pop	r0
+     b42:	cf 91       	pop	r28
+     b44:	df 91       	pop	r29
+     b46:	08 95       	ret
+
+00000b48 <CheckedComStartSending>:
+
+
+void CheckedComStartSending(unsigned char data){
+     b48:	df 93       	push	r29
+     b4a:	cf 93       	push	r28
+     b4c:	0f 92       	push	r0
+     b4e:	cd b7       	in	r28, 0x3d	; 61
+     b50:	de b7       	in	r29, 0x3e	; 62
+     b52:	89 83       	std	Y+1, r24	; 0x01
+	g_checkedComToSend = data;
+     b54:	89 81       	ldd	r24, Y+1	; 0x01
+     b56:	80 93 b8 01 	sts	0x01B8, r24
+	GoToState( &StateProc_CheckedComSending );
+     b5a:	86 eb       	ldi	r24, 0xB6	; 182
+     b5c:	96 e0       	ldi	r25, 0x06	; 6
+     b5e:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+}
+     b62:	0f 90       	pop	r0
+     b64:	cf 91       	pop	r28
+     b66:	df 91       	pop	r29
+     b68:	08 95       	ret
+
+00000b6a <StateProc_CheckedComIdle>:
+
+
+void StateProc_CheckedComIdle(){
+     b6a:	df 93       	push	r29
+     b6c:	cf 93       	push	r28
+     b6e:	cd b7       	in	r28, 0x3d	; 61
+     b70:	de b7       	in	r29, 0x3e	; 62
+	GoToState(&StateProc_CheckedComTestIdle);
+     b72:	80 ec       	ldi	r24, 0xC0	; 192
+     b74:	95 e0       	ldi	r25, 0x05	; 5
+     b76:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+}
+     b7a:	cf 91       	pop	r28
+     b7c:	df 91       	pop	r29
+     b7e:	08 95       	ret
+
+00000b80 <StateProc_CheckedComTestIdle>:
+
+
+void StateProc_CheckedComTestIdle(){
+     b80:	df 93       	push	r29
+     b82:	cf 93       	push	r28
+     b84:	cd b7       	in	r28, 0x3d	; 61
+     b86:	de b7       	in	r29, 0x3e	; 62
+	if(CheckedComTryToStartReceiving()){
+     b88:	0e 94 84 05 	call	0xb08	; 0xb08 <CheckedComTryToStartReceiving>
+     b8c:	88 23       	and	r24, r24
+     b8e:	19 f5       	brne	.+70     	; 0xbd6 <StateProc_CheckedComTestIdle+0x56>
+	}else if(ButtonIsDown(S2)){
+     b90:	86 e0       	ldi	r24, 0x06	; 6
+     b92:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     b96:	88 23       	and	r24, r24
+     b98:	21 f0       	breq	.+8      	; 0xba2 <StateProc_CheckedComTestIdle+0x22>
+		CheckedComStartSending(0);
+     b9a:	80 e0       	ldi	r24, 0x00	; 0
+     b9c:	0e 94 a4 05 	call	0xb48	; 0xb48 <CheckedComStartSending>
+     ba0:	1a c0       	rjmp	.+52     	; 0xbd6 <StateProc_CheckedComTestIdle+0x56>
+	}else if(ButtonIsDown(S3)){
+     ba2:	83 e0       	ldi	r24, 0x03	; 3
+     ba4:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     ba8:	88 23       	and	r24, r24
+     baa:	21 f0       	breq	.+8      	; 0xbb4 <StateProc_CheckedComTestIdle+0x34>
+		CheckedComStartSending(1);
+     bac:	81 e0       	ldi	r24, 0x01	; 1
+     bae:	0e 94 a4 05 	call	0xb48	; 0xb48 <CheckedComStartSending>
+     bb2:	11 c0       	rjmp	.+34     	; 0xbd6 <StateProc_CheckedComTestIdle+0x56>
+	}else if(ButtonIsDown(S4)){
+     bb4:	85 e0       	ldi	r24, 0x05	; 5
+     bb6:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     bba:	88 23       	and	r24, r24
+     bbc:	21 f0       	breq	.+8      	; 0xbc6 <StateProc_CheckedComTestIdle+0x46>
+		CheckedComStartSending(2);
+     bbe:	82 e0       	ldi	r24, 0x02	; 2
+     bc0:	0e 94 a4 05 	call	0xb48	; 0xb48 <CheckedComStartSending>
+     bc4:	08 c0       	rjmp	.+16     	; 0xbd6 <StateProc_CheckedComTestIdle+0x56>
+	}else if(ButtonIsDown(S5)){
+     bc6:	84 e0       	ldi	r24, 0x04	; 4
+     bc8:	0e 94 6a 07 	call	0xed4	; 0xed4 <ButtonIsDown>
+     bcc:	88 23       	and	r24, r24
+     bce:	19 f0       	breq	.+6      	; 0xbd6 <StateProc_CheckedComTestIdle+0x56>
+		CheckedComStartSending(3);
+     bd0:	83 e0       	ldi	r24, 0x03	; 3
+     bd2:	0e 94 a4 05 	call	0xb48	; 0xb48 <CheckedComStartSending>
+	}
+}
+     bd6:	cf 91       	pop	r28
+     bd8:	df 91       	pop	r29
+     bda:	08 95       	ret
+
+00000bdc <StateProc_CheckedComReceiving>:
+
+
+void StateProc_CheckedComReceiving(){
+     bdc:	df 93       	push	r29
+     bde:	cf 93       	push	r28
+     be0:	cd b7       	in	r28, 0x3d	; 61
+     be2:	de b7       	in	r29, 0x3e	; 62
+     be4:	2b 97       	sbiw	r28, 0x0b	; 11
+     be6:	0f b6       	in	r0, 0x3f	; 63
+     be8:	f8 94       	cli
+     bea:	de bf       	out	0x3e, r29	; 62
+     bec:	0f be       	out	0x3f, r0	; 63
+     bee:	cd bf       	out	0x3d, r28	; 61
+	static unsigned char lastState=0;
+	unsigned long dw = 0;
+     bf0:	18 86       	std	Y+8, r1	; 0x08
+     bf2:	19 86       	std	Y+9, r1	; 0x09
+     bf4:	1a 86       	std	Y+10, r1	; 0x0a
+     bf6:	1b 86       	std	Y+11, r1	; 0x0b
+	unsigned char p = 0;
+     bf8:	1f 82       	std	Y+7, r1	; 0x07
+	unsigned short toWait = RECVBITWAIT;
+     bfa:	86 eb       	ldi	r24, 0xB6	; 182
+     bfc:	93 e0       	ldi	r25, 0x03	; 3
+     bfe:	9e 83       	std	Y+6, r25	; 0x06
+     c00:	8d 83       	std	Y+5, r24	; 0x05
+     c02:	45 c0       	rjmp	.+138    	; 0xc8e <StateProc_CheckedComReceiving+0xb2>
+	while( (UCSRA & _BV(RXC)) || toWait ){
+		if(UCSRA & _BV(RXC)){
+     c04:	eb e2       	ldi	r30, 0x2B	; 43
+     c06:	f0 e0       	ldi	r31, 0x00	; 0
+     c08:	80 81       	ld	r24, Z
+     c0a:	88 23       	and	r24, r24
+     c0c:	7c f5       	brge	.+94     	; 0xc6c <StateProc_CheckedComReceiving+0x90>
+			unsigned char c = ~UDR;
+     c0e:	ec e2       	ldi	r30, 0x2C	; 44
+     c10:	f0 e0       	ldi	r31, 0x00	; 0
+     c12:	80 81       	ld	r24, Z
+     c14:	80 95       	com	r24
+     c16:	8c 83       	std	Y+4, r24	; 0x04
+			if(c){
+     c18:	8c 81       	ldd	r24, Y+4	; 0x04
+     c1a:	88 23       	and	r24, r24
+     c1c:	c1 f1       	breq	.+112    	; 0xc8e <StateProc_CheckedComReceiving+0xb2>
+				if(c<SINGLE_PULSE_THRESHOLD){
+     c1e:	8c 81       	ldd	r24, Y+4	; 0x04
+     c20:	8c 30       	cpi	r24, 0x0C	; 12
+     c22:	e0 f4       	brcc	.+56     	; 0xc5c <StateProc_CheckedComReceiving+0x80>
+					dw|=(1L<<p);
+     c24:	8f 81       	ldd	r24, Y+7	; 0x07
+     c26:	28 2f       	mov	r18, r24
+     c28:	30 e0       	ldi	r19, 0x00	; 0
+     c2a:	81 e0       	ldi	r24, 0x01	; 1
+     c2c:	90 e0       	ldi	r25, 0x00	; 0
+     c2e:	a0 e0       	ldi	r26, 0x00	; 0
+     c30:	b0 e0       	ldi	r27, 0x00	; 0
+     c32:	04 c0       	rjmp	.+8      	; 0xc3c <StateProc_CheckedComReceiving+0x60>
+     c34:	88 0f       	add	r24, r24
+     c36:	99 1f       	adc	r25, r25
+     c38:	aa 1f       	adc	r26, r26
+     c3a:	bb 1f       	adc	r27, r27
+     c3c:	2a 95       	dec	r18
+     c3e:	d2 f7       	brpl	.-12     	; 0xc34 <StateProc_CheckedComReceiving+0x58>
+     c40:	9c 01       	movw	r18, r24
+     c42:	ad 01       	movw	r20, r26
+     c44:	88 85       	ldd	r24, Y+8	; 0x08
+     c46:	99 85       	ldd	r25, Y+9	; 0x09
+     c48:	aa 85       	ldd	r26, Y+10	; 0x0a
+     c4a:	bb 85       	ldd	r27, Y+11	; 0x0b
+     c4c:	82 2b       	or	r24, r18
+     c4e:	93 2b       	or	r25, r19
+     c50:	a4 2b       	or	r26, r20
+     c52:	b5 2b       	or	r27, r21
+     c54:	88 87       	std	Y+8, r24	; 0x08
+     c56:	99 87       	std	Y+9, r25	; 0x09
+     c58:	aa 87       	std	Y+10, r26	; 0x0a
+     c5a:	bb 87       	std	Y+11, r27	; 0x0b
+				}
+				++p;
+     c5c:	8f 81       	ldd	r24, Y+7	; 0x07
+     c5e:	8f 5f       	subi	r24, 0xFF	; 255
+     c60:	8f 83       	std	Y+7, r24	; 0x07
+				toWait = RECVBITWAIT;
+     c62:	86 eb       	ldi	r24, 0xB6	; 182
+     c64:	93 e0       	ldi	r25, 0x03	; 3
+     c66:	9e 83       	std	Y+6, r25	; 0x06
+     c68:	8d 83       	std	Y+5, r24	; 0x05
+     c6a:	11 c0       	rjmp	.+34     	; 0xc8e <StateProc_CheckedComReceiving+0xb2>
+			}
+		}else{
+			TIFR &= ~_BV(OCF2);
+     c6c:	a8 e5       	ldi	r26, 0x58	; 88
+     c6e:	b0 e0       	ldi	r27, 0x00	; 0
+     c70:	e8 e5       	ldi	r30, 0x58	; 88
+     c72:	f0 e0       	ldi	r31, 0x00	; 0
+     c74:	80 81       	ld	r24, Z
+     c76:	8f 77       	andi	r24, 0x7F	; 127
+     c78:	8c 93       	st	X, r24
+			while(!(TIFR & _BV(OCF2)))
+     c7a:	e8 e5       	ldi	r30, 0x58	; 88
+     c7c:	f0 e0       	ldi	r31, 0x00	; 0
+     c7e:	80 81       	ld	r24, Z
+     c80:	88 23       	and	r24, r24
+     c82:	dc f7       	brge	.-10     	; 0xc7a <StateProc_CheckedComReceiving+0x9e>
+				;
+			--toWait;
+     c84:	8d 81       	ldd	r24, Y+5	; 0x05
+     c86:	9e 81       	ldd	r25, Y+6	; 0x06
+     c88:	01 97       	sbiw	r24, 0x01	; 1
+     c8a:	9e 83       	std	Y+6, r25	; 0x06
+     c8c:	8d 83       	std	Y+5, r24	; 0x05
+void StateProc_CheckedComReceiving(){
+	static unsigned char lastState=0;
+	unsigned long dw = 0;
+	unsigned char p = 0;
+	unsigned short toWait = RECVBITWAIT;
+	while( (UCSRA & _BV(RXC)) || toWait ){
+     c8e:	eb e2       	ldi	r30, 0x2B	; 43
+     c90:	f0 e0       	ldi	r31, 0x00	; 0
+     c92:	80 81       	ld	r24, Z
+     c94:	88 23       	and	r24, r24
+     c96:	0c f4       	brge	.+2      	; 0xc9a <StateProc_CheckedComReceiving+0xbe>
+     c98:	b5 cf       	rjmp	.-150    	; 0xc04 <StateProc_CheckedComReceiving+0x28>
+     c9a:	8d 81       	ldd	r24, Y+5	; 0x05
+     c9c:	9e 81       	ldd	r25, Y+6	; 0x06
+     c9e:	00 97       	sbiw	r24, 0x00	; 0
+     ca0:	09 f0       	breq	.+2      	; 0xca4 <StateProc_CheckedComReceiving+0xc8>
+     ca2:	b0 cf       	rjmp	.-160    	; 0xc04 <StateProc_CheckedComReceiving+0x28>
+//			GoToState(&StateProc_CheckedComReceivingComplete);
+//			return;
+//		}
+//	}
+	{
+		unsigned char minError = 100;
+     ca4:	84 e6       	ldi	r24, 0x64	; 100
+     ca6:	8b 83       	std	Y+3, r24	; 0x03
+		unsigned char bestMatch = lastState;
+     ca8:	80 91 b0 00 	lds	r24, 0x00B0
+     cac:	8a 83       	std	Y+2, r24	; 0x02
+		for( p=0; p<(1<<SYMBOLLENGTH) && minError; ++p ){
+     cae:	1f 82       	std	Y+7, r1	; 0x07
+     cb0:	2e c0       	rjmp	.+92     	; 0xd0e <StateProc_CheckedComReceiving+0x132>
+			unsigned char n = CountBitsDW(g_symbols[p]^dw);
+     cb2:	8f 81       	ldd	r24, Y+7	; 0x07
+     cb4:	88 2f       	mov	r24, r24
+     cb6:	90 e0       	ldi	r25, 0x00	; 0
+     cb8:	88 0f       	add	r24, r24
+     cba:	99 1f       	adc	r25, r25
+     cbc:	88 0f       	add	r24, r24
+     cbe:	99 1f       	adc	r25, r25
+     cc0:	fc 01       	movw	r30, r24
+     cc2:	e8 59       	subi	r30, 0x98	; 152
+     cc4:	ff 4f       	sbci	r31, 0xFF	; 255
+     cc6:	20 81       	ld	r18, Z
+     cc8:	31 81       	ldd	r19, Z+1	; 0x01
+     cca:	42 81       	ldd	r20, Z+2	; 0x02
+     ccc:	53 81       	ldd	r21, Z+3	; 0x03
+     cce:	88 85       	ldd	r24, Y+8	; 0x08
+     cd0:	99 85       	ldd	r25, Y+9	; 0x09
+     cd2:	aa 85       	ldd	r26, Y+10	; 0x0a
+     cd4:	bb 85       	ldd	r27, Y+11	; 0x0b
+     cd6:	82 27       	eor	r24, r18
+     cd8:	93 27       	eor	r25, r19
+     cda:	a4 27       	eor	r26, r20
+     cdc:	b5 27       	eor	r27, r21
+     cde:	bc 01       	movw	r22, r24
+     ce0:	cd 01       	movw	r24, r26
+     ce2:	0e 94 51 05 	call	0xaa2	; 0xaa2 <CountBitsDW>
+     ce6:	89 83       	std	Y+1, r24	; 0x01
+			if(n<minError){
+     ce8:	99 81       	ldd	r25, Y+1	; 0x01
+     cea:	8b 81       	ldd	r24, Y+3	; 0x03
+     cec:	98 17       	cp	r25, r24
+     cee:	28 f4       	brcc	.+10     	; 0xcfa <StateProc_CheckedComReceiving+0x11e>
+				bestMatch = p;
+     cf0:	8f 81       	ldd	r24, Y+7	; 0x07
+     cf2:	8a 83       	std	Y+2, r24	; 0x02
+				minError = n;
+     cf4:	89 81       	ldd	r24, Y+1	; 0x01
+     cf6:	8b 83       	std	Y+3, r24	; 0x03
+     cf8:	07 c0       	rjmp	.+14     	; 0xd08 <StateProc_CheckedComReceiving+0x12c>
+			}else if(n==minError){
+     cfa:	99 81       	ldd	r25, Y+1	; 0x01
+     cfc:	8b 81       	ldd	r24, Y+3	; 0x03
+     cfe:	98 17       	cp	r25, r24
+     d00:	19 f4       	brne	.+6      	; 0xd08 <StateProc_CheckedComReceiving+0x12c>
+				bestMatch = lastState;
+     d02:	80 91 b0 00 	lds	r24, 0x00B0
+     d06:	8a 83       	std	Y+2, r24	; 0x02
+//		}
+//	}
+	{
+		unsigned char minError = 100;
+		unsigned char bestMatch = lastState;
+		for( p=0; p<(1<<SYMBOLLENGTH) && minError; ++p ){
+     d08:	8f 81       	ldd	r24, Y+7	; 0x07
+     d0a:	8f 5f       	subi	r24, 0xFF	; 255
+     d0c:	8f 83       	std	Y+7, r24	; 0x07
+     d0e:	8f 81       	ldd	r24, Y+7	; 0x07
+     d10:	80 31       	cpi	r24, 0x10	; 16
+     d12:	18 f4       	brcc	.+6      	; 0xd1a <StateProc_CheckedComReceiving+0x13e>
+     d14:	8b 81       	ldd	r24, Y+3	; 0x03
+     d16:	88 23       	and	r24, r24
+     d18:	61 f6       	brne	.-104    	; 0xcb2 <StateProc_CheckedComReceiving+0xd6>
+				minError = n;
+			}else if(n==minError){
+				bestMatch = lastState;
+			}
+		}
+		if(bestMatch!=lastState && minError<=MAXERROR){
+     d1a:	90 91 b0 00 	lds	r25, 0x00B0
+     d1e:	8a 81       	ldd	r24, Y+2	; 0x02
+     d20:	89 17       	cp	r24, r25
+     d22:	b9 f0       	breq	.+46     	; 0xd52 <StateProc_CheckedComReceiving+0x176>
+     d24:	8b 81       	ldd	r24, Y+3	; 0x03
+     d26:	87 30       	cpi	r24, 0x07	; 7
+     d28:	a0 f4       	brcc	.+40     	; 0xd52 <StateProc_CheckedComReceiving+0x176>
+			g_checkedComLastReceived = ( ((bestMatch|(1<<SYMBOLLENGTH)) - lastState) & ((1<<SYMBOLLENGTH)-1) ) - 1;
+     d2a:	8a 81       	ldd	r24, Y+2	; 0x02
+     d2c:	98 2f       	mov	r25, r24
+     d2e:	90 61       	ori	r25, 0x10	; 16
+     d30:	80 91 b0 00 	lds	r24, 0x00B0
+     d34:	29 2f       	mov	r18, r25
+     d36:	28 1b       	sub	r18, r24
+     d38:	82 2f       	mov	r24, r18
+     d3a:	8f 70       	andi	r24, 0x0F	; 15
+     d3c:	81 50       	subi	r24, 0x01	; 1
+     d3e:	80 93 b9 01 	sts	0x01B9, r24
+			lastState = bestMatch;
+     d42:	8a 81       	ldd	r24, Y+2	; 0x02
+     d44:	80 93 b0 00 	sts	0x00B0, r24
+			GoToState(&StateProc_CheckedComReceivingComplete);
+     d48:	80 e3       	ldi	r24, 0x30	; 48
+     d4a:	97 e0       	ldi	r25, 0x07	; 7
+     d4c:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+     d50:	04 c0       	rjmp	.+8      	; 0xd5a <StateProc_CheckedComReceiving+0x17e>
+			return;
+		}
+	}
+	GoToState(StateProc_CheckedComIdle);
+     d52:	85 eb       	ldi	r24, 0xB5	; 181
+     d54:	95 e0       	ldi	r25, 0x05	; 5
+     d56:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+}
+     d5a:	2b 96       	adiw	r28, 0x0b	; 11
+     d5c:	0f b6       	in	r0, 0x3f	; 63
+     d5e:	f8 94       	cli
+     d60:	de bf       	out	0x3e, r29	; 62
+     d62:	0f be       	out	0x3f, r0	; 63
+     d64:	cd bf       	out	0x3d, r28	; 61
+     d66:	cf 91       	pop	r28
+     d68:	df 91       	pop	r29
+     d6a:	08 95       	ret
+
+00000d6c <StateProc_CheckedComSending>:
+
+
+void StateProc_CheckedComSending(){
+     d6c:	df 93       	push	r29
+     d6e:	cf 93       	push	r28
+     d70:	00 d0       	rcall	.+0      	; 0xd72 <StateProc_CheckedComSending+0x6>
+     d72:	00 d0       	rcall	.+0      	; 0xd74 <StateProc_CheckedComSending+0x8>
+     d74:	0f 92       	push	r0
+     d76:	cd b7       	in	r28, 0x3d	; 61
+     d78:	de b7       	in	r29, 0x3e	; 62
+	static unsigned char lastState=0;
+	lastState = (lastState+g_checkedComToSend+1)&((1<<SYMBOLLENGTH)-1);
+     d7a:	90 91 b1 00 	lds	r25, 0x00B1
+     d7e:	80 91 b8 01 	lds	r24, 0x01B8
+     d82:	89 0f       	add	r24, r25
+     d84:	8f 5f       	subi	r24, 0xFF	; 255
+     d86:	8f 70       	andi	r24, 0x0F	; 15
+     d88:	80 93 b1 00 	sts	0x00B1, r24
+	unsigned char i;
+	UCSRB&=~_BV(RXEN);
+     d8c:	aa e2       	ldi	r26, 0x2A	; 42
+     d8e:	b0 e0       	ldi	r27, 0x00	; 0
+     d90:	ea e2       	ldi	r30, 0x2A	; 42
+     d92:	f0 e0       	ldi	r31, 0x00	; 0
+     d94:	80 81       	ld	r24, Z
+     d96:	8f 7e       	andi	r24, 0xEF	; 239
+     d98:	8c 93       	st	X, r24
+	for(i=0;i<STATECAST_NUM;++i){
+     d9a:	1d 82       	std	Y+5, r1	; 0x05
+     d9c:	36 c0       	rjmp	.+108    	; 0xe0a <StateProc_CheckedComSending+0x9e>
+		unsigned long dw = g_symbols[lastState];
+     d9e:	80 91 b1 00 	lds	r24, 0x00B1
+     da2:	88 2f       	mov	r24, r24
+     da4:	90 e0       	ldi	r25, 0x00	; 0
+     da6:	88 0f       	add	r24, r24
+     da8:	99 1f       	adc	r25, r25
+     daa:	88 0f       	add	r24, r24
+     dac:	99 1f       	adc	r25, r25
+     dae:	fc 01       	movw	r30, r24
+     db0:	e8 59       	subi	r30, 0x98	; 152
+     db2:	ff 4f       	sbci	r31, 0xFF	; 255
+     db4:	80 81       	ld	r24, Z
+     db6:	91 81       	ldd	r25, Z+1	; 0x01
+     db8:	a2 81       	ldd	r26, Z+2	; 0x02
+     dba:	b3 81       	ldd	r27, Z+3	; 0x03
+     dbc:	89 83       	std	Y+1, r24	; 0x01
+     dbe:	9a 83       	std	Y+2, r25	; 0x02
+     dc0:	ab 83       	std	Y+3, r26	; 0x03
+     dc2:	bc 83       	std	Y+4, r27	; 0x04
+		SendSingleLowestBit(0);
+     dc4:	80 e0       	ldi	r24, 0x00	; 0
+     dc6:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+     dca:	10 c0       	rjmp	.+32     	; 0xdec <StateProc_CheckedComSending+0x80>
+		while(dw){
+			SendSingleLowestBit(dw & 1);
+     dcc:	89 81       	ldd	r24, Y+1	; 0x01
+     dce:	81 70       	andi	r24, 0x01	; 1
+     dd0:	0e 94 49 00 	call	0x92	; 0x92 <SendSingleLowestBit>
+			dw>>=1;
+     dd4:	89 81       	ldd	r24, Y+1	; 0x01
+     dd6:	9a 81       	ldd	r25, Y+2	; 0x02
+     dd8:	ab 81       	ldd	r26, Y+3	; 0x03
+     dda:	bc 81       	ldd	r27, Y+4	; 0x04
+     ddc:	b6 95       	lsr	r27
+     dde:	a7 95       	ror	r26
+     de0:	97 95       	ror	r25
+     de2:	87 95       	ror	r24
+     de4:	89 83       	std	Y+1, r24	; 0x01
+     de6:	9a 83       	std	Y+2, r25	; 0x02
+     de8:	ab 83       	std	Y+3, r26	; 0x03
+     dea:	bc 83       	std	Y+4, r27	; 0x04
+	unsigned char i;
+	UCSRB&=~_BV(RXEN);
+	for(i=0;i<STATECAST_NUM;++i){
+		unsigned long dw = g_symbols[lastState];
+		SendSingleLowestBit(0);
+		while(dw){
+     dec:	89 81       	ldd	r24, Y+1	; 0x01
+     dee:	9a 81       	ldd	r25, Y+2	; 0x02
+     df0:	ab 81       	ldd	r26, Y+3	; 0x03
+     df2:	bc 81       	ldd	r27, Y+4	; 0x04
+     df4:	00 97       	sbiw	r24, 0x00	; 0
+     df6:	a1 05       	cpc	r26, r1
+     df8:	b1 05       	cpc	r27, r1
+     dfa:	41 f7       	brne	.-48     	; 0xdcc <StateProc_CheckedComSending+0x60>
+			SendSingleLowestBit(dw & 1);
+			dw>>=1;
+		}
+		WaitIRCarrierCycles(SENDSYMBOLWAIT);
+     dfc:	8c e6       	ldi	r24, 0x6C	; 108
+     dfe:	97 e0       	ldi	r25, 0x07	; 7
+     e00:	0e 94 a5 00 	call	0x14a	; 0x14a <WaitIRCarrierCycles>
+void StateProc_CheckedComSending(){
+	static unsigned char lastState=0;
+	lastState = (lastState+g_checkedComToSend+1)&((1<<SYMBOLLENGTH)-1);
+	unsigned char i;
+	UCSRB&=~_BV(RXEN);
+	for(i=0;i<STATECAST_NUM;++i){
+     e04:	8d 81       	ldd	r24, Y+5	; 0x05
+     e06:	8f 5f       	subi	r24, 0xFF	; 255
+     e08:	8d 83       	std	Y+5, r24	; 0x05
+     e0a:	8d 81       	ldd	r24, Y+5	; 0x05
+     e0c:	80 34       	cpi	r24, 0x40	; 64
+     e0e:	38 f2       	brcs	.-114    	; 0xd9e <StateProc_CheckedComSending+0x32>
+			SendSingleLowestBit(dw & 1);
+			dw>>=1;
+		}
+		WaitIRCarrierCycles(SENDSYMBOLWAIT);
+	}
+	UCSRB|=_BV(RXEN);
+     e10:	aa e2       	ldi	r26, 0x2A	; 42
+     e12:	b0 e0       	ldi	r27, 0x00	; 0
+     e14:	ea e2       	ldi	r30, 0x2A	; 42
+     e16:	f0 e0       	ldi	r31, 0x00	; 0
+     e18:	80 81       	ld	r24, Z
+     e1a:	80 61       	ori	r24, 0x10	; 16
+     e1c:	8c 93       	st	X, r24
+	GoToState(StateProc_CheckedComIdle);
+     e1e:	85 eb       	ldi	r24, 0xB5	; 181
+     e20:	95 e0       	ldi	r25, 0x05	; 5
+     e22:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+}
+     e26:	0f 90       	pop	r0
+     e28:	0f 90       	pop	r0
+     e2a:	0f 90       	pop	r0
+     e2c:	0f 90       	pop	r0
+     e2e:	0f 90       	pop	r0
+     e30:	cf 91       	pop	r28
+     e32:	df 91       	pop	r29
+     e34:	08 95       	ret
+
+00000e36 <StateProc_CheckedComReplying>:
+
+
+void StateProc_CheckedComReplying(){
+     e36:	df 93       	push	r29
+     e38:	cf 93       	push	r28
+     e3a:	cd b7       	in	r28, 0x3d	; 61
+     e3c:	de b7       	in	r29, 0x3e	; 62
+}
+     e3e:	cf 91       	pop	r28
+     e40:	df 91       	pop	r29
+     e42:	08 95       	ret
+
+00000e44 <StateProc_CheckedComWaitingForReply>:
+
+
+void StateProc_CheckedComWaitingForReply(){
+     e44:	df 93       	push	r29
+     e46:	cf 93       	push	r28
+     e48:	cd b7       	in	r28, 0x3d	; 61
+     e4a:	de b7       	in	r29, 0x3e	; 62
+}
+     e4c:	cf 91       	pop	r28
+     e4e:	df 91       	pop	r29
+     e50:	08 95       	ret
+
+00000e52 <StateProc_CheckedComReceivingReply>:
+
+
+void StateProc_CheckedComReceivingReply(){
+     e52:	df 93       	push	r29
+     e54:	cf 93       	push	r28
+     e56:	cd b7       	in	r28, 0x3d	; 61
+     e58:	de b7       	in	r29, 0x3e	; 62
+}
+     e5a:	cf 91       	pop	r28
+     e5c:	df 91       	pop	r29
+     e5e:	08 95       	ret
+
+00000e60 <StateProc_CheckedComReceivingComplete>:
+
+
+void StateProc_CheckedComReceivingComplete(){
+     e60:	df 93       	push	r29
+     e62:	cf 93       	push	r28
+     e64:	cd b7       	in	r28, 0x3d	; 61
+     e66:	de b7       	in	r29, 0x3e	; 62
+	if(g_checkedComLastReceived==0){		
+     e68:	80 91 b9 01 	lds	r24, 0x01B9
+     e6c:	88 23       	and	r24, r24
+     e6e:	41 f4       	brne	.+16     	; 0xe80 <StateProc_CheckedComReceivingComplete+0x20>
+		PORTB |= 1;
+     e70:	a8 e3       	ldi	r26, 0x38	; 56
+     e72:	b0 e0       	ldi	r27, 0x00	; 0
+     e74:	e8 e3       	ldi	r30, 0x38	; 56
+     e76:	f0 e0       	ldi	r31, 0x00	; 0
+     e78:	80 81       	ld	r24, Z
+     e7a:	81 60       	ori	r24, 0x01	; 1
+     e7c:	8c 93       	st	X, r24
+     e7e:	23 c0       	rjmp	.+70     	; 0xec6 <StateProc_CheckedComReceivingComplete+0x66>
+	}else if(g_checkedComLastReceived==1){
+     e80:	80 91 b9 01 	lds	r24, 0x01B9
+     e84:	81 30       	cpi	r24, 0x01	; 1
+     e86:	41 f4       	brne	.+16     	; 0xe98 <StateProc_CheckedComReceivingComplete+0x38>
+		PORTB &= ~1;
+     e88:	a8 e3       	ldi	r26, 0x38	; 56
+     e8a:	b0 e0       	ldi	r27, 0x00	; 0
+     e8c:	e8 e3       	ldi	r30, 0x38	; 56
+     e8e:	f0 e0       	ldi	r31, 0x00	; 0
+     e90:	80 81       	ld	r24, Z
+     e92:	8e 7f       	andi	r24, 0xFE	; 254
+     e94:	8c 93       	st	X, r24
+     e96:	17 c0       	rjmp	.+46     	; 0xec6 <StateProc_CheckedComReceivingComplete+0x66>
+	}else if(g_checkedComLastReceived==2){
+     e98:	80 91 b9 01 	lds	r24, 0x01B9
+     e9c:	82 30       	cpi	r24, 0x02	; 2
+     e9e:	41 f4       	brne	.+16     	; 0xeb0 <StateProc_CheckedComReceivingComplete+0x50>
+		PORTB |= 2;
+     ea0:	a8 e3       	ldi	r26, 0x38	; 56
+     ea2:	b0 e0       	ldi	r27, 0x00	; 0
+     ea4:	e8 e3       	ldi	r30, 0x38	; 56
+     ea6:	f0 e0       	ldi	r31, 0x00	; 0
+     ea8:	80 81       	ld	r24, Z
+     eaa:	82 60       	ori	r24, 0x02	; 2
+     eac:	8c 93       	st	X, r24
+     eae:	0b c0       	rjmp	.+22     	; 0xec6 <StateProc_CheckedComReceivingComplete+0x66>
+	}else if(g_checkedComLastReceived==3){
+     eb0:	80 91 b9 01 	lds	r24, 0x01B9
+     eb4:	83 30       	cpi	r24, 0x03	; 3
+     eb6:	39 f4       	brne	.+14     	; 0xec6 <StateProc_CheckedComReceivingComplete+0x66>
+		PORTB &= ~2;
+     eb8:	a8 e3       	ldi	r26, 0x38	; 56
+     eba:	b0 e0       	ldi	r27, 0x00	; 0
+     ebc:	e8 e3       	ldi	r30, 0x38	; 56
+     ebe:	f0 e0       	ldi	r31, 0x00	; 0
+     ec0:	80 81       	ld	r24, Z
+     ec2:	8d 7f       	andi	r24, 0xFD	; 253
+     ec4:	8c 93       	st	X, r24
+	}
+	GoToState(&StateProc_CheckedComIdle);
+     ec6:	85 eb       	ldi	r24, 0xB5	; 181
+     ec8:	95 e0       	ldi	r25, 0x05	; 5
+     eca:	0e 94 96 03 	call	0x72c	; 0x72c <GoToState>
+}
+     ece:	cf 91       	pop	r28
+     ed0:	df 91       	pop	r29
+     ed2:	08 95       	ret
+
+00000ed4 <ButtonIsDown>:
+#include "index.h"
+
+BOOL ButtonIsDown(unsigned char button){
+     ed4:	df 93       	push	r29
+     ed6:	cf 93       	push	r28
+     ed8:	00 d0       	rcall	.+0      	; 0xeda <ButtonIsDown+0x6>
+     eda:	cd b7       	in	r28, 0x3d	; 61
+     edc:	de b7       	in	r29, 0x3e	; 62
+     ede:	89 83       	std	Y+1, r24	; 0x01
+	return !(PIND&_BV(button));
+     ee0:	e0 e3       	ldi	r30, 0x30	; 48
+     ee2:	f0 e0       	ldi	r31, 0x00	; 0
+     ee4:	80 81       	ld	r24, Z
+     ee6:	28 2f       	mov	r18, r24
+     ee8:	30 e0       	ldi	r19, 0x00	; 0
+     eea:	89 81       	ldd	r24, Y+1	; 0x01
+     eec:	88 2f       	mov	r24, r24
+     eee:	90 e0       	ldi	r25, 0x00	; 0
+     ef0:	a9 01       	movw	r20, r18
+     ef2:	02 c0       	rjmp	.+4      	; 0xef8 <ButtonIsDown+0x24>
+     ef4:	55 95       	asr	r21
+     ef6:	47 95       	ror	r20
+     ef8:	8a 95       	dec	r24
+     efa:	e2 f7       	brpl	.-8      	; 0xef4 <ButtonIsDown+0x20>
+     efc:	ca 01       	movw	r24, r20
+     efe:	81 70       	andi	r24, 0x01	; 1
+     f00:	90 70       	andi	r25, 0x00	; 0
+     f02:	1a 82       	std	Y+2, r1	; 0x02
+     f04:	00 97       	sbiw	r24, 0x00	; 0
+     f06:	11 f4       	brne	.+4      	; 0xf0c <ButtonIsDown+0x38>
+     f08:	51 e0       	ldi	r21, 0x01	; 1
+     f0a:	5a 83       	std	Y+2, r21	; 0x02
+     f0c:	8a 81       	ldd	r24, Y+2	; 0x02
+}
+     f0e:	0f 90       	pop	r0
+     f10:	0f 90       	pop	r0
+     f12:	cf 91       	pop	r28
+     f14:	df 91       	pop	r29
+     f16:	08 95       	ret
+
+00000f18 <do_rand>:
+     f18:	a0 e0       	ldi	r26, 0x00	; 0
+     f1a:	b0 e0       	ldi	r27, 0x00	; 0
+     f1c:	e2 e9       	ldi	r30, 0x92	; 146
+     f1e:	f7 e0       	ldi	r31, 0x07	; 7
+     f20:	0c 94 2f 08 	jmp	0x105e	; 0x105e <__prologue_saves__+0x10>
+     f24:	ec 01       	movw	r28, r24
+     f26:	a8 80       	ld	r10, Y
+     f28:	b9 80       	ldd	r11, Y+1	; 0x01
+     f2a:	ca 80       	ldd	r12, Y+2	; 0x02
+     f2c:	db 80       	ldd	r13, Y+3	; 0x03
+     f2e:	a1 14       	cp	r10, r1
+     f30:	b1 04       	cpc	r11, r1
+     f32:	c1 04       	cpc	r12, r1
+     f34:	d1 04       	cpc	r13, r1
+     f36:	41 f4       	brne	.+16     	; 0xf48 <do_rand+0x30>
+     f38:	84 e2       	ldi	r24, 0x24	; 36
+     f3a:	a8 2e       	mov	r10, r24
+     f3c:	89 ed       	ldi	r24, 0xD9	; 217
+     f3e:	b8 2e       	mov	r11, r24
+     f40:	8b e5       	ldi	r24, 0x5B	; 91
+     f42:	c8 2e       	mov	r12, r24
+     f44:	87 e0       	ldi	r24, 0x07	; 7
+     f46:	d8 2e       	mov	r13, r24
+     f48:	c6 01       	movw	r24, r12
+     f4a:	b5 01       	movw	r22, r10
+     f4c:	2d e1       	ldi	r18, 0x1D	; 29
+     f4e:	33 ef       	ldi	r19, 0xF3	; 243
+     f50:	41 e0       	ldi	r20, 0x01	; 1
+     f52:	50 e0       	ldi	r21, 0x00	; 0
+     f54:	0e 94 0c 08 	call	0x1018	; 0x1018 <__divmodsi4>
+     f58:	27 ea       	ldi	r18, 0xA7	; 167
+     f5a:	31 e4       	ldi	r19, 0x41	; 65
+     f5c:	40 e0       	ldi	r20, 0x00	; 0
+     f5e:	50 e0       	ldi	r21, 0x00	; 0
+     f60:	0e 94 ed 07 	call	0xfda	; 0xfda <__mulsi3>
+     f64:	7b 01       	movw	r14, r22
+     f66:	8c 01       	movw	r16, r24
+     f68:	c6 01       	movw	r24, r12
+     f6a:	b5 01       	movw	r22, r10
+     f6c:	2d e1       	ldi	r18, 0x1D	; 29
+     f6e:	33 ef       	ldi	r19, 0xF3	; 243
+     f70:	41 e0       	ldi	r20, 0x01	; 1
+     f72:	50 e0       	ldi	r21, 0x00	; 0
+     f74:	0e 94 0c 08 	call	0x1018	; 0x1018 <__divmodsi4>
+     f78:	ca 01       	movw	r24, r20
+     f7a:	b9 01       	movw	r22, r18
+     f7c:	2c ee       	ldi	r18, 0xEC	; 236
+     f7e:	34 ef       	ldi	r19, 0xF4	; 244
+     f80:	4f ef       	ldi	r20, 0xFF	; 255
+     f82:	5f ef       	ldi	r21, 0xFF	; 255
+     f84:	0e 94 ed 07 	call	0xfda	; 0xfda <__mulsi3>
+     f88:	6e 0d       	add	r22, r14
+     f8a:	7f 1d       	adc	r23, r15
+     f8c:	80 1f       	adc	r24, r16
+     f8e:	91 1f       	adc	r25, r17
+     f90:	97 ff       	sbrs	r25, 7
+     f92:	04 c0       	rjmp	.+8      	; 0xf9c <do_rand+0x84>
+     f94:	61 50       	subi	r22, 0x01	; 1
+     f96:	70 40       	sbci	r23, 0x00	; 0
+     f98:	80 40       	sbci	r24, 0x00	; 0
+     f9a:	90 48       	sbci	r25, 0x80	; 128
+     f9c:	68 83       	st	Y, r22
+     f9e:	79 83       	std	Y+1, r23	; 0x01
+     fa0:	8a 83       	std	Y+2, r24	; 0x02
+     fa2:	9b 83       	std	Y+3, r25	; 0x03
+     fa4:	9b 01       	movw	r18, r22
+     fa6:	3f 77       	andi	r19, 0x7F	; 127
+     fa8:	c9 01       	movw	r24, r18
+     faa:	cd b7       	in	r28, 0x3d	; 61
+     fac:	de b7       	in	r29, 0x3e	; 62
+     fae:	ea e0       	ldi	r30, 0x0A	; 10
+     fb0:	0c 94 4b 08 	jmp	0x1096	; 0x1096 <__epilogue_restores__+0x10>
+
+00000fb4 <rand_r>:
+     fb4:	0e 94 8c 07 	call	0xf18	; 0xf18 <do_rand>
+     fb8:	08 95       	ret
+
+00000fba <rand>:
+     fba:	88 ea       	ldi	r24, 0xA8	; 168
+     fbc:	90 e0       	ldi	r25, 0x00	; 0
+     fbe:	0e 94 8c 07 	call	0xf18	; 0xf18 <do_rand>
+     fc2:	08 95       	ret
+
+00000fc4 <srand>:
+     fc4:	a0 e0       	ldi	r26, 0x00	; 0
+     fc6:	b0 e0       	ldi	r27, 0x00	; 0
+     fc8:	80 93 a8 00 	sts	0x00A8, r24
+     fcc:	90 93 a9 00 	sts	0x00A9, r25
+     fd0:	a0 93 aa 00 	sts	0x00AA, r26
+     fd4:	b0 93 ab 00 	sts	0x00AB, r27
+     fd8:	08 95       	ret
+
+00000fda <__mulsi3>:
+     fda:	62 9f       	mul	r22, r18
+     fdc:	d0 01       	movw	r26, r0
+     fde:	73 9f       	mul	r23, r19
+     fe0:	f0 01       	movw	r30, r0
+     fe2:	82 9f       	mul	r24, r18
+     fe4:	e0 0d       	add	r30, r0
+     fe6:	f1 1d       	adc	r31, r1
+     fe8:	64 9f       	mul	r22, r20
+     fea:	e0 0d       	add	r30, r0
+     fec:	f1 1d       	adc	r31, r1
+     fee:	92 9f       	mul	r25, r18
+     ff0:	f0 0d       	add	r31, r0
+     ff2:	83 9f       	mul	r24, r19
+     ff4:	f0 0d       	add	r31, r0
+     ff6:	74 9f       	mul	r23, r20
+     ff8:	f0 0d       	add	r31, r0
+     ffa:	65 9f       	mul	r22, r21
+     ffc:	f0 0d       	add	r31, r0
+     ffe:	99 27       	eor	r25, r25
+    1000:	72 9f       	mul	r23, r18
+    1002:	b0 0d       	add	r27, r0
+    1004:	e1 1d       	adc	r30, r1
+    1006:	f9 1f       	adc	r31, r25
+    1008:	63 9f       	mul	r22, r19
+    100a:	b0 0d       	add	r27, r0
+    100c:	e1 1d       	adc	r30, r1
+    100e:	f9 1f       	adc	r31, r25
+    1010:	bd 01       	movw	r22, r26
+    1012:	cf 01       	movw	r24, r30
+    1014:	11 24       	eor	r1, r1
+    1016:	08 95       	ret
+
+00001018 <__divmodsi4>:
+    1018:	97 fb       	bst	r25, 7
+    101a:	09 2e       	mov	r0, r25
+    101c:	05 26       	eor	r0, r21
+    101e:	0e d0       	rcall	.+28     	; 0x103c <__divmodsi4_neg1>
+    1020:	57 fd       	sbrc	r21, 7
+    1022:	04 d0       	rcall	.+8      	; 0x102c <__divmodsi4_neg2>
+    1024:	4b d0       	rcall	.+150    	; 0x10bc <__udivmodsi4>
+    1026:	0a d0       	rcall	.+20     	; 0x103c <__divmodsi4_neg1>
+    1028:	00 1c       	adc	r0, r0
+    102a:	38 f4       	brcc	.+14     	; 0x103a <__divmodsi4_exit>
+
+0000102c <__divmodsi4_neg2>:
+    102c:	50 95       	com	r21
+    102e:	40 95       	com	r20
+    1030:	30 95       	com	r19
+    1032:	21 95       	neg	r18
+    1034:	3f 4f       	sbci	r19, 0xFF	; 255
+    1036:	4f 4f       	sbci	r20, 0xFF	; 255
+    1038:	5f 4f       	sbci	r21, 0xFF	; 255
+
+0000103a <__divmodsi4_exit>:
+    103a:	08 95       	ret
+
+0000103c <__divmodsi4_neg1>:
+    103c:	f6 f7       	brtc	.-4      	; 0x103a <__divmodsi4_exit>
+    103e:	90 95       	com	r25
+    1040:	80 95       	com	r24
+    1042:	70 95       	com	r23
+    1044:	61 95       	neg	r22
+    1046:	7f 4f       	sbci	r23, 0xFF	; 255
+    1048:	8f 4f       	sbci	r24, 0xFF	; 255
+    104a:	9f 4f       	sbci	r25, 0xFF	; 255
+    104c:	08 95       	ret
+
+0000104e <__prologue_saves__>:
+    104e:	2f 92       	push	r2
+    1050:	3f 92       	push	r3
+    1052:	4f 92       	push	r4
+    1054:	5f 92       	push	r5
+    1056:	6f 92       	push	r6
+    1058:	7f 92       	push	r7
+    105a:	8f 92       	push	r8
+    105c:	9f 92       	push	r9
+    105e:	af 92       	push	r10
+    1060:	bf 92       	push	r11
+    1062:	cf 92       	push	r12
+    1064:	df 92       	push	r13
+    1066:	ef 92       	push	r14
+    1068:	ff 92       	push	r15
+    106a:	0f 93       	push	r16
+    106c:	1f 93       	push	r17
+    106e:	cf 93       	push	r28
+    1070:	df 93       	push	r29
+    1072:	cd b7       	in	r28, 0x3d	; 61
+    1074:	de b7       	in	r29, 0x3e	; 62
+    1076:	ca 1b       	sub	r28, r26
+    1078:	db 0b       	sbc	r29, r27
+    107a:	0f b6       	in	r0, 0x3f	; 63
+    107c:	f8 94       	cli
+    107e:	de bf       	out	0x3e, r29	; 62
+    1080:	0f be       	out	0x3f, r0	; 63
+    1082:	cd bf       	out	0x3d, r28	; 61
+    1084:	09 94       	ijmp
+
+00001086 <__epilogue_restores__>:
+    1086:	2a 88       	ldd	r2, Y+18	; 0x12
+    1088:	39 88       	ldd	r3, Y+17	; 0x11
+    108a:	48 88       	ldd	r4, Y+16	; 0x10
+    108c:	5f 84       	ldd	r5, Y+15	; 0x0f
+    108e:	6e 84       	ldd	r6, Y+14	; 0x0e
+    1090:	7d 84       	ldd	r7, Y+13	; 0x0d
+    1092:	8c 84       	ldd	r8, Y+12	; 0x0c
+    1094:	9b 84       	ldd	r9, Y+11	; 0x0b
+    1096:	aa 84       	ldd	r10, Y+10	; 0x0a
+    1098:	b9 84       	ldd	r11, Y+9	; 0x09
+    109a:	c8 84       	ldd	r12, Y+8	; 0x08
+    109c:	df 80       	ldd	r13, Y+7	; 0x07
+    109e:	ee 80       	ldd	r14, Y+6	; 0x06
+    10a0:	fd 80       	ldd	r15, Y+5	; 0x05
+    10a2:	0c 81       	ldd	r16, Y+4	; 0x04
+    10a4:	1b 81       	ldd	r17, Y+3	; 0x03
+    10a6:	aa 81       	ldd	r26, Y+2	; 0x02
+    10a8:	b9 81       	ldd	r27, Y+1	; 0x01
+    10aa:	ce 0f       	add	r28, r30
+    10ac:	d1 1d       	adc	r29, r1
+    10ae:	0f b6       	in	r0, 0x3f	; 63
+    10b0:	f8 94       	cli
+    10b2:	de bf       	out	0x3e, r29	; 62
+    10b4:	0f be       	out	0x3f, r0	; 63
+    10b6:	cd bf       	out	0x3d, r28	; 61
+    10b8:	ed 01       	movw	r28, r26
+    10ba:	08 95       	ret
+
+000010bc <__udivmodsi4>:
+    10bc:	a1 e2       	ldi	r26, 0x21	; 33
+    10be:	1a 2e       	mov	r1, r26
+    10c0:	aa 1b       	sub	r26, r26
+    10c2:	bb 1b       	sub	r27, r27
+    10c4:	fd 01       	movw	r30, r26
+    10c6:	0d c0       	rjmp	.+26     	; 0x10e2 <__udivmodsi4_ep>
+
+000010c8 <__udivmodsi4_loop>:
+    10c8:	aa 1f       	adc	r26, r26
+    10ca:	bb 1f       	adc	r27, r27
+    10cc:	ee 1f       	adc	r30, r30
+    10ce:	ff 1f       	adc	r31, r31
+    10d0:	a2 17       	cp	r26, r18
+    10d2:	b3 07       	cpc	r27, r19
+    10d4:	e4 07       	cpc	r30, r20
+    10d6:	f5 07       	cpc	r31, r21
+    10d8:	20 f0       	brcs	.+8      	; 0x10e2 <__udivmodsi4_ep>
+    10da:	a2 1b       	sub	r26, r18
+    10dc:	b3 0b       	sbc	r27, r19
+    10de:	e4 0b       	sbc	r30, r20
+    10e0:	f5 0b       	sbc	r31, r21
+
+000010e2 <__udivmodsi4_ep>:
+    10e2:	66 1f       	adc	r22, r22
+    10e4:	77 1f       	adc	r23, r23
+    10e6:	88 1f       	adc	r24, r24
+    10e8:	99 1f       	adc	r25, r25
+    10ea:	1a 94       	dec	r1
+    10ec:	69 f7       	brne	.-38     	; 0x10c8 <__udivmodsi4_loop>
+    10ee:	60 95       	com	r22
+    10f0:	70 95       	com	r23
+    10f2:	80 95       	com	r24
+    10f4:	90 95       	com	r25
+    10f6:	9b 01       	movw	r18, r22
+    10f8:	ac 01       	movw	r20, r24
+    10fa:	bd 01       	movw	r22, r26
+    10fc:	cf 01       	movw	r24, r30
+    10fe:	08 95       	ret
+
+00001100 <_exit>:
+    1100:	f8 94       	cli
+
+00001102 <__stop_program>:
+    1102:	ff cf       	rjmp	.-2      	; 0x1102 <__stop_program>
